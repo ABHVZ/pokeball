@@ -1,5 +1,25 @@
-const User = require('./user')
+const Sequelize = require('sequelize');
+const db = require('./db');
 
+const User = require('./user')
+const Address = require('./address')
+const Order = require('./order')
+const Pokemon = require('./pokemon')
+
+//Order: address, user, pokemon(item)
+Order.hasOne(Address);
+Order.hasMany(Pokemon, {as: 'item'});
+Order.hasOne(User);
+
+//User: order, address
+User.hasMany(Order);
+User.hasOne(Address); //possibly many in later edition
+
+//Address:
+//no associations needed
+
+//Types:
+//no associations needed
 /**
  * If we had any associations to make, this would be a great place to put them!
  * ex. if we had another model called BlogPost, we might say:
