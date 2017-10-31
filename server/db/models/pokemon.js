@@ -1,7 +1,16 @@
 const Sequelize = require('sequelize');
 const db = require('../db');
 
-const typeData = ('Bug',
+const Pokemon = db.define('pokemon', {
+  name: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
+  },
+  type1: {
+    type: Sequelize.ENUM('Bug',
 'Dark',
 'Dragon',
 'Electric',
@@ -18,21 +27,27 @@ const typeData = ('Bug',
 'Psychic',
 'Rock',
 'Steel',
-'Water');
-
-const Pokemon = db.define('pokemon', {
-  name: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true
-    }
-  },
-  type1: {
-    type: Sequelize.ENUM(typeData)
+'Water')
   },
   type2: {
-    type: Sequelize.ENUM(typeData, '')
+    type: Sequelize.ENUM('Bug',
+'Dark',
+'Dragon',
+'Electric',
+'Fairy',
+'Fighting',
+'Fire',
+'Flying',
+'Ghost',
+'Grass',
+'Ground',
+'Ice',
+'Normal',
+'Poison',
+'Psychic',
+'Rock',
+'Steel',
+'Water', '')
   },
   total: {
     type: Sequelize.INTEGER,
