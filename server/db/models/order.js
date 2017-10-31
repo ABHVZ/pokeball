@@ -3,7 +3,7 @@ const db = require('../db')
 
 const Order = db.define('order', {
   status: {
-    type: Sequelize.ENUM("PROCESSING", "SHIPPED", "DELIVERED"),
+    type: Sequelize.ENUM('PROCESSING', 'SHIPPED', 'DELIVERED'),
   },
   total: {
     type: Sequelize.INTEGER
