@@ -91,7 +91,7 @@ const Pokemon = db.define('pokemon', {
       min: 0
     }
   },
-  generation: {
+  gen: {
     type: Sequelize.INTEGER,
   },
   legendary: {
