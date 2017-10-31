@@ -25,7 +25,7 @@ const userData = [
 
 db.sync({force: true})
 .then(function () {
-  console.log("Dropped old pokemon, now inserting pokemon");
+  console.log('Dropped old pokemon, now inserting pokemon');
   return Promise.map(data, function (pokemon) {
     // console.log(pokemon)
     return Pokemon.create(pokemon);
@@ -33,11 +33,12 @@ db.sync({force: true})
 })
 .then(function () {
   return Promise.map(userData, function (user) {
+    console.log('Creating new users');
     return User.create(user);
   })
 })
 .then(function () {
-  console.log("Finished inserting pokemon (press ctrl-c to exit)");
+  console.log('Finished inserting pokemon (press ctrl-c to exit)');
 })
 .catch(function (err) {
   console.error('There was totally a problem', err, err.stack);
