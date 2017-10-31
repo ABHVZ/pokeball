@@ -42,6 +42,7 @@ export default class MenuExamplePointing extends Component {
               <div class="hidden content">Shop</div>
               <div class="visible content">
                 <i class="shop icon"></i>
+              </div>
             </div>
 
           </Menu.Menu>
