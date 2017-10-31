@@ -1,14 +1,11 @@
-const User = require('./user')
-const Address = require('./address')
-const Order = require('./order')
-const Sequelize = require('sequelize');
+const User = require('./user');
+const Address = require('./address');
+const Order = require('./order');
 const Pokemon = require('./pokemon.js');
 
-//Order: address, user, pokemon(item)
-Order.hasOne(Address);
-// Order.hasMany(Pokemon, {as: 'item'});
+Order.belongsTo(Address);
 Order.belongsTo(User);
-User.hasOne(Address); //possibly many in later edition
+User.hasOne(Address);
 
 
 module.exports = {
