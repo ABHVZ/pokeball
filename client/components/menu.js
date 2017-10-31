@@ -38,10 +38,10 @@ export default class MenuExamplePointing extends Component {
               <Button as="a" primary>Sign Up</Button>
             </Menu.Item>
 
-            <div class="ui vertical animated button" tabindex="0">
-              <div class="hidden content">Shop</div>
-              <div class="visible content">
-                <i class="shop icon"></i>
+            <div className="ui vertical animated button" tabIndex="0">
+              <div className="hidden content">Shop</div>
+              <div className="visible content">
+                <i className="shop icon"></i>
               </div>
             </div>
 
