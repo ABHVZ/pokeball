@@ -1,7 +1,9 @@
 const User = require('./user')
 const Address = require('./address')
 const Order = require('./order')
-// const Pokemon = require('./pokemon')
+const Sequelize = require('sequelize');
+const Pokemon = require('./pokemon.js');
+const db = require('../');
 
 //Order: address, user, pokemon(item)
 Order.hasOne(Address);
@@ -29,31 +31,17 @@ User.hasOne(Address); //possibly many in later edition
  * for example, we can say: const {User} = require('../db/models')
  * instead of: const User = require('../db/models/user')
  */
-const Sequelize = require('sequelize');
-const Pokemon = require('./pokemon.js');
-const User = require('./user')
-const Order = require('./order.js');
-const Type = require('./type.js');
-const Address = require('./address.js')
-const db = require('../');
 
 Order.belongsToMany(Address);
 Address.hasMany(Order);
-
 Address.belongsTo(User);
-
 Order.belongsTo(User);
 User.hasMany(Order);
-
-Type.hasMany(Pokemon);
-Pokemon.belongsToMany(Type);
-
 
 module.exports = {
     db: db,
     Order: Order,
     Address: Address,
     User: User,
-    Type: Type,
     Pokemon: Pokemon
 };
