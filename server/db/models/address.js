@@ -1,8 +1,6 @@
 const Sequelize = require('sequelize')
 const db = require('../db');
 
-const states =  'AK','AL','AR','AZ','CA','CO','CT','DE','FL','GA','HI','IA','ID','IL','IN','KS','KY','LA','MA','MD','ME','MI','MN','MO','MS','MT','NC','ND','NE','NH','NJ','NM','NV','NY','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VA','VT','WA','WI', 'WV','WY'
-
 const Address = db.define('address', {
   zipcode: {
     type: Sequelize.STRING,
@@ -13,13 +11,15 @@ const Address = db.define('address', {
     allowNull: false
   },
   state: {
-    type: Sequelize.ENUM(states)
+    type: Sequelize.ENUM('AK','AL','AR','AZ','CA','CO','CT','DE','FL','GA','HI','IA','ID','IL','IN','KS','KY','LA','MA','MD','ME','MI','MN','MO','MS','MT','NC','ND','NE','NH','NJ','NM','NV','NY','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VA','VT','WA','WI', 'WV','WY'),
     allowNull: false
   },
   telephone: {
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
     allowNull: false
   }
 })
 
-module.exports = Address
+module.exports = Address;
+
+
