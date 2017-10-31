@@ -1,18 +1,14 @@
-const Sequelize = require('sequelize');
-const db = require('./db');
-
 const User = require('./user')
 const Address = require('./address')
 const Order = require('./order')
-const Pokemon = require('./pokemon')
+// const Pokemon = require('./pokemon')
 
 //Order: address, user, pokemon(item)
 Order.hasOne(Address);
-Order.hasMany(Pokemon, {as: 'item'});
-Order.hasOne(User);
+// Order.hasMany(Pokemon, {as: 'item'});
+Order.belongsTo(User);
 
-//User: order, address
-User.hasMany(Order);
+//User: address
 User.hasOne(Address); //possibly many in later edition
 
 //Address:
