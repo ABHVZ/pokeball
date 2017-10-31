@@ -1,13 +1,38 @@
-const Sequelize = require("sequelize");
-const db = require("../db");
+const Sequelize = require('sequelize');
+const db = require('../db');
 
-const Pokemon = db.define("pokemon", {
+const typeData = ('Bug',
+'Dark',
+'Dragon',
+'Electric',
+'Fairy',
+'Fighting',
+'Fire',
+'Flying',
+'Ghost',
+'Grass',
+'Ground',
+'Ice',
+'Normal',
+'Poison',
+'Psychic',
+'Rock',
+'Steel',
+'Water');
+
+const Pokemon = db.define('pokemon', {
   name: {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
       notEmpty: true
     }
+  },
+  type1: {
+    type: Sequelize.ENUM(typeData)
+  },
+  type2: {
+    type: Sequelize.ENUM(typeData, '')
   },
   total: {
     type: Sequelize.INTEGER,
@@ -53,16 +78,10 @@ const Pokemon = db.define("pokemon", {
   },
   generation: {
     type: Sequelize.INTEGER,
-    validate: {
-      min: 1,
-      max: 7
-    }
   },
   legendary: {
-    type: Sequelize.BOOLEAN
-  },
-  price: {
-    type: Sequelize.INTEGER
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   },
   imgUrl: {
     type: Sequelize.STRING,
@@ -75,3 +94,8 @@ const Pokemon = db.define("pokemon", {
 });
 
 module.exports = Pokemon;
+
+Pokemon.prototype.getPrice = function() {
+  const legendMulti = Pokemon.legendary ? 1.9 : 0;
+  return Pokemon.total * (0.1 + legendMulti);
+};
