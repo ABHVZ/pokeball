@@ -11,7 +11,9 @@ class SinglePage extends Component {
 
 	render() {
 		return (
-			<div>Test single page</div>
+			<div>
+				Test single page
+			</div>
 		)
 	}
 }
