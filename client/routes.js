@@ -5,7 +5,8 @@ import { Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
 import { Main, Login, Signup, UserHome, HomePage } from './components'
-import store, { me, fetchAllPokemon } from './store'
+import store, { me, fetchAllPokemon } from './store';
+import SinglePage from './components/SinglePage/single-page';
 
 /**
  * COMPONENT
@@ -27,6 +28,7 @@ class Routes extends Component {
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
             <Route path="/homepage" component={HomePage} />
+            <Route path="/allpokemon/:id" component={SinglePage} />
             {
               isLoggedIn &&
               <Switch>
