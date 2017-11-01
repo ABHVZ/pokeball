@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
-//import * as actions from '../actions';
-//import ModalForm from '../components/Modals';
 import PokemonCard from './pokemon-card';
 import { Grid, Card } from 'semantic-ui-react';
 
-//make the slice into a global function 
+const pokemonPerPage = 30;
+const getCurrentPagePokemon = (allPokemon, currentPageIndex) => {
+    return allPokemon.slice((currentPageIndex - 1) * 30, currentPageIndex * 30)
+}
 
 class AllPokemon extends Component {
     constructor(props) {
@@ -20,24 +21,19 @@ class AllPokemon extends Component {
     render() {
         const { allPokemon } = this.props;
         let pageButtons = [];
-        const pokemonPerPage = 30;
-
 
         _.range(1, allPokemon.length / pokemonPerPage).map(pageIndex => {
             pageButtons.push(<button onClick={this.setCurrentPage}>{pageIndex}</button>)
         })
-
 
         return (
             <div>
                 <h1>Shop Pokemon</h1>
 
                 <div className="pokemon-cards-container">
-                    {allPokemon && allPokemon.slice((this.state.currentPage - 1) * 30, this.state.currentPage * 30).map(pokemon =>
-                        (<PokemonCard
-                            pokemon={pokemon}
-                        />)
-                    )}
+                    {allPokemon && getCurrentPagePokemon(allPokemon, this.state.currentPage).map(pokemon => (
+                        <PokemonCard pokemon={pokemon} />
+                    ))}
                 </div>
 
                 <div className="pokemon-page-control">

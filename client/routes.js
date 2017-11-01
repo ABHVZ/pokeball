@@ -5,7 +5,7 @@ import { Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
 import { Main, Login, Signup, UserHome, HomePage } from './components'
-import store, { me, fetchAllPokemon } from './store'
+import { me, fetchAllPokemon } from './store'
 
 /**
  * COMPONENT
@@ -13,7 +13,6 @@ import store, { me, fetchAllPokemon } from './store'
 class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData()
-    store.dispatch(fetchAllPokemon()); // dispatch two things in loadInitial Data
   }
 
   render() {
@@ -58,6 +57,7 @@ const mapDispatch = (dispatch) => {
   return {
     loadInitialData() {
       dispatch(me())
+      dispatch(fetchAllPokemon())
     }
   }
 }
