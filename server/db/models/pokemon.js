@@ -11,43 +11,51 @@ const Pokemon = db.define('pokemon', {
   },
   type1: {
     type: Sequelize.ENUM('Bug',
-'Dark',
-'Dragon',
-'Electric',
-'Fairy',
-'Fighting',
-'Fire',
-'Flying',
-'Ghost',
-'Grass',
-'Ground',
-'Ice',
-'Normal',
-'Poison',
-'Psychic',
-'Rock',
-'Steel',
-'Water')
+      'Dark',
+      'Dragon',
+      'Electric',
+      'Fairy',
+      'Fighting',
+      'Fire',
+      'Flying',
+      'Ghost',
+      'Grass',
+      'Ground',
+      'Ice',
+      'Normal',
+      'Poison',
+      'Psychic',
+      'Rock',
+      'Steel',
+      'Water')
   },
   type2: {
     type: Sequelize.ENUM('Bug',
-'Dark',
-'Dragon',
-'Electric',
-'Fairy',
-'Fighting',
-'Fire',
-'Flying',
-'Ghost',
-'Grass',
-'Ground',
-'Ice',
-'Normal',
-'Poison',
-'Psychic',
-'Rock',
-'Steel',
-'Water', '')
+      'Dark',
+      'Dragon',
+      'Electric',
+      'Fairy',
+      'Fighting',
+      'Fire',
+      'Flying',
+      'Ghost',
+      'Grass',
+      'Ground',
+      'Ice',
+      'Normal',
+      'Poison',
+      'Psychic',
+      'Rock',
+      'Steel',
+      'Water',
+      '')
+  },
+  price: {
+    type: Sequelize.VIRTUAL,
+    get: function () {
+      const legendMulti = Pokemon.legendary ? 2 : 0.1;
+      return Pokemon.total * legendMulti;
+    }
   },
   total: {
     type: Sequelize.INTEGER,
@@ -100,8 +108,7 @@ const Pokemon = db.define('pokemon', {
   },
   imgUrl: {
     type: Sequelize.STRING,
-    defaultValue:
-      'https://pre00.deviantart.net/d1d9/th/pre/i/2017/051/5/3/pokemon_egg__standard_2k__by_maniraptavia-daghxb1.png',
+    defaultValue: 'https://pre00.deviantart.net/d1d9/th/pre/i/2017/051/5/3/pokemon_egg__standard_2k__by_maniraptavia-daghxb1.png',
     validate: {
       isUrl: true
     }
@@ -109,8 +116,3 @@ const Pokemon = db.define('pokemon', {
 });
 
 module.exports = Pokemon;
-
-Pokemon.prototype.getPrice = function() {
-  const legendMulti = Pokemon.legendary ? 1.9 : 0;
-  return Pokemon.total * (0.1 + legendMulti);
-};
