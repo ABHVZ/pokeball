@@ -3,10 +3,11 @@ import { connect } from 'react-redux'
 import { Router } from 'react-router'
 import { Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
+
 import history from './history'
-import { Main, Login, Signup, UserHome, HomePage } from './components'
-import store, { me, fetchAllPokemon } from './store';
 import SinglePage from './components/SinglePage/single-page';
+import { Main, Login, Signup, UserHome, HomePage, Navbar } from './components'
+import store, { me, fetchAllPokemon } from './store'
 
 /**
  * COMPONENT
@@ -23,6 +24,7 @@ class Routes extends Component {
     return (
       <Router history={history}>
         <Main>
+          <Navbar />
           <Switch>
             {/* Routes placed here are available to all visitors */}
             <Route path="/login" component={Login} />
