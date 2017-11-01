@@ -17,7 +17,7 @@ const User = db.define('user', {
     googleId: {
         type: Sequelize.STRING
     },
-    firstName: {
+    firstName: {  //cuz google might not give these data so no allownull
         type: Sequelize.STRING,
         allowNull: false
     },

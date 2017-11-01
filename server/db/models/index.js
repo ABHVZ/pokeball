@@ -5,8 +5,8 @@ const Pokemon = require('./pokemon.js');
 
 Order.belongsTo(Address);
 Order.belongsTo(User);
-User.hasOne(Address);
-
+User.hasOne(Address); // maybe User.hasMany(Address) and Address.hasMany(User)
+// order and pokemon have to be associated
 
 module.exports = {
     Order: Order,

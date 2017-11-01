@@ -13,7 +13,7 @@ import store, { me, fetchAllPokemon } from './store'
 class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData()
-    store.dispatch(fetchAllPokemon());
+    store.dispatch(fetchAllPokemon()); // dispatch two things in loadInitial Data
   }
 
   render() {
