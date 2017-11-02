@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import pokemonTypes from './(NOT COMPO) pokemon-types';
+import pokemonTypes from './_util_pokemon_types';
 //import * as actions from '../actions';
 //import ModalForm from '../components/Modals';
 import { Form, Button } from 'semantic-ui-react';
