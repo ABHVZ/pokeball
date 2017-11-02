@@ -3,9 +3,8 @@ import { connect } from 'react-redux'
 import { Router } from 'react-router'
 import { Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
-
 import history from './history'
-import { Main, Login, Signup, UserHome, HomePage } from './components'
+import { Main, Login, Signup, UserHome, HomePage, SinglePage, Navbar } from './components'
 import { me, fetchAllPokemon } from './store'
 
 /**
@@ -28,7 +27,7 @@ class Routes extends Component {
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
             <Route path="/homepage" component={HomePage} />
-            <Route path="/allpokemon/:id" component={SinglePage} />
+            <Route path="/pokemon/:id" component={SinglePage} />
             {
               isLoggedIn &&
               <Switch>
