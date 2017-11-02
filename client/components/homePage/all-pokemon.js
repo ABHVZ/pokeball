@@ -2,14 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import PokemonCard from './pokemon-card';
-import { Grid, Card } from 'semantic-ui-react';
 
 const pokemonPerPage = 30;
 const getCurrentPagePokemon = (allPokemon, currentPageIndex) => {
     return allPokemon.slice((currentPageIndex - 1) * 30, currentPageIndex * 30)
 }
-const filterPokemonByPrice = (min, max, pokemon) => {
-    return pokemon.filter(pokemon => pokemon.total >= min && pokemon.total <= max)
+const filterPokemonByPrice = (min, max, allpokemon) => {
+    return allpokemon.filter(pokemon => pokemon.total >= min && pokemon.total <= max)
 }
 
 class AllPokemon extends Component {
@@ -31,14 +30,13 @@ class AllPokemon extends Component {
             pageButtons.push(<button onClick={this.setCurrentPage}>{pageIndex}</button>)
         })
 
-
         return (
             <div>
                 <h1>Shop Pokemon</h1>
 
                 <div className="pokemon-cards-container">
-                    {filteredPokemon && getCurrentPagePokemon(filteredPokemon, this.state.currentPage).map(pokemon => (
-                        <PokemonCard pokemon={pokemon} />
+                    {filteredPokemon && getCurrentPagePokemon(filteredPokemon, this.state.currentPage).map((pokemon) => (
+                        <PokemonCard pokemon={pokemon} key={pokemon.name} />
                     ))}
                 </div>
 

@@ -53,7 +53,7 @@ const Pokemon = db.define('pokemon', {
   price: {
     type: Sequelize.VIRTUAL,
     get: function () {
-      const legendMulti = this.legendary ? 2 : 0.1;
+      const legendMulti = this.legendary ? 20 : 1;
       return this.total * legendMulti;
     }
   },

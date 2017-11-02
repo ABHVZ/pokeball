@@ -1,42 +1,35 @@
-import React, { Component } from 'react';
-import { Card, Image, Button, Icon } from 'semantic-ui-react'
+import React from 'react';
+import { Card, Image } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 
-//seperate stateful and container components
 
-export default class PokemonCard extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            // showModal: false
-        }
-    }
+const Pokemon = (props) => {
 
-    render() {
-        const { name, type1, total, hp, atk, gen, imgUrl, id } = this.props.pokemon;
-        return (
-            <Card id={id} className="pokemon-card">
+    const { name, type1, price, hp, atk, imgUrl, id } = props.pokemon;
+    return (
+        <Card id={id} className="pokemon-card">
+            <Link to={`/pokemon/${id}`}>
+                <Image src={imgUrl} centered />
+            </Link>
+            <Card.Content>
                 <Link to={`/pokemon/${id}`}>
-                    <Image src={imgUrl} centered />
+                    <Card.Header>
+                        {name}
+                    </Card.Header>
                 </Link>
-                <Card.Content>
-                    <Link to={`/allpokemon/${id}`}>
-                        <Card.Header>
-                            {name}
-                        </Card.Header>
-                    </Link>
-                    <Card.Meta>
-                        <span>
-                            {`type: ${type1} hp: ${hp}, atk: ${atk}`}
-                        </span>
-                    </Card.Meta>
-                    <Card.Description>
-                        {`$${total}`}
-                    </Card.Description>
-                </Card.Content>
-            </Card>
-        )
-    }
+                <Card.Meta>
+                    <span>
+                        {`type: ${type1} hp: ${hp}, atk: ${atk}`}
+                    </span>
+                </Card.Meta>
+                <Card.Description>
+                    {`$${price}`}
+                </Card.Description>
+            </Card.Content>
+        </Card>
+    )
 
 }
+
+export default Pokemon
 

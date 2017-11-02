@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import pokemonTypes from './(NOT COMPO) pokemon-types';
+import pokemonTypes from './_util_pokemon_types';
 import { setMaxPrice, setMinPrice } from '../../store'
-import { Button, Form } from 'semantic-ui-react';
+import { Form } from 'semantic-ui-react';
 
 
 class Sidebar extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            maxPriceInput: "$min",
-            minPriceInput: "$max"
+            maxPriceInput: '$min',
+            minPriceInput: '$max'
         }
 
         this.onSubmit = this.onSubmit.bind(this)
@@ -23,7 +23,7 @@ class Sidebar extends Component {
             <div className="sidebar">
                 {
                     pokemonTypes.map(pokemonType => (
-                        <Form.Field label={pokemonType} key={pokemonType} control='input' type='checkbox' />
+                        <Form.Field label={pokemonType} key={pokemonType} control="input" type="checkbox" />
                     ))
                 }
 
@@ -32,7 +32,7 @@ class Sidebar extends Component {
                     <input className="price-input" onChange={this.setLocalMinPrice} value={this.state.minPriceInput} />
                     <div>To</div>
                     <input className="price-input" onChange={this.setLocalMaxPrice} value={this.state.maxPriceInput} />
-                    <button className="price-submit-button" type='submit'>Submit</button>
+                    <button className="price-submit-button" type="submit">Submit</button>
                 </form>
             </div>
         )
@@ -48,9 +48,9 @@ class Sidebar extends Component {
 
     onSubmit(event) {
         event.preventDefault();
-        this.props.submitMinMaxPrice(parseInt(this.state.minPriceInput), parseInt(this.state.maxPriceInput))
-        this.setState({ minPriceInput: "$min" })
-        this.setState({ maxPriceInput: "$max" })
+        this.props.submitMinMaxPrice(parseInt(this.state.minPriceInput, 10), parseInt(this.state.maxPriceInput, 10))
+        this.setState({ minPriceInput: '$min' })
+        this.setState({ maxPriceInput: '$max' })
     }
 
 
@@ -67,10 +67,4 @@ const mapDispatchToProps = (dispatch) => ({
     }
 })
 
-
-
 export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);
-
-
-// integrate linter:
-// use pokeball-test otherwise reseed everytime running test
