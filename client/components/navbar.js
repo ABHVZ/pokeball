@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Input, Container, Menu, Button, Image, Icon } from 'semantic-ui-react';
+import { Input, Menu, Button, Image, Icon, Container } from 'semantic-ui-react';
 import { connect } from 'react-redux';
+import { Link, NavLink, withRouter } from 'react-router-dom';
 
 class Navbar extends Component {
   constructor(props) {
@@ -10,90 +11,87 @@ class Navbar extends Component {
     }
   }
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+  handleItemClick = (elem, { name }) => this.setState({ activeItem: name })
 
   render() {
     const { activeItem } = this.state
 
     return (
       <div>
-        <Menu pointing fixed="top">
+      <Container>
+        <Menu fixed="top">
 
-          {
-            // <Container>
-          }
-
+          <NavLink to="/" activeClassName="active">
             <Menu.Item
+              header
               as="a"
               active={activeItem === 'home'}
               onClick={this.handleItemClick}
-              header
               name="home">
               <Image
                 size="mini"
+                className="shake"
                 src="/pokeball.png"
                 style={{ marginRight: '1.5em' }}
               />
               PokeBall
             </Menu.Item>
+          </NavLink>
 
-            {//<Menu.Item
-              //   name="home"
-              //   active={activeItem === 'home'}
-              //   onClick={this.handleItemClick} />
-            }
+          <Menu.Item>
+            <Input
+              icon="search"
+              fluid
+              placeholder="Search..."
+            />
+          </Menu.Item>
 
-            <Menu.Menu position="right">
+          <Menu.Menu position="right">
 
-              <Menu.Item
-                name="profile"
-                active={activeItem === 'profile'}
-                onClick={this.handleItemClick} />
+          {
+            // // TODO: only show profile in leiu of log in/sign up if logged in
+            // <Menu.Item
+            //   name="profile"
+            //   active={activeItem === 'profile'}
+            //   onClick={this.handleItemClick} />
+          }
 
+          <NavLink to="/login" activeClassName="active">
+            <Menu.Item className="item">
+              <Button compact as="a">
+                Log In
+              </Button>
+            </Menu.Item>
+          </NavLink>
+
+          <NavLink to="/signup" activeClassName="active">
+            <Menu.Item className="item">
+              <Button compact as="a" primary>
+                Sign Up
+              </Button>
+            </Menu.Item>
+          </NavLink>
+
+          <NavLink to="/cart" activeClassName="active">
               <Menu.Item className="item">
-                <Button compact as="a">
-                  Log In
-                </Button>
-              </Menu.Item>
-
-              <Menu.Item>
-                <Button compact as="a" primary>
-                  Sign Up
-                </Button>
-              </Menu.Item>
-            {
-              // <div className="ui compact vertical animated button" tabIndex="0">
-              //   <div className="hidden content">
-              //     Shop
-              //   </div>
-              //   <div className="visible content">
-              //     <Icon name="shopping cart" />
-              //   </div>
-              // </div>
-            }
-            <Button animated="vertical" compact size="small">
-                <Button.Content hidden>Cart</Button.Content>
+              <Button animated="vertical" compact>
+                <Button.Content hidden>
+                  Cart
+                </Button.Content>
                 <Button.Content visible>
                   <Icon name="shop" />
                 </Button.Content>
               </Button>
+            </Menu.Item>
+          </NavLink>
 
-              <Menu.Item>
-                <Input
-                icon="search"
-                placeholder="Search..." />
-              </Menu.Item>
+          </Menu.Menu>
 
-            </Menu.Menu>
-
-            {
-            // </Container>
-            }
         </Menu>
-
+</Container>
       </div>
     )
   }
 }
 
-export default connect()(Navbar);
+export default withRouter(connect()(Navbar));
