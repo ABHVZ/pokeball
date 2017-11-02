@@ -51,6 +51,3 @@ export default class MenuExamplePointing extends Component {
     )
   }
 }
-
-//master as the product, if it doesn't work, it isn't complete, should not merge and go to master
-// if has to merge without completing, write comments TODO
