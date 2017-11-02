@@ -21,16 +21,33 @@ body {
 
 }
 
-.pokemon-cards-container {
-  display: flex;
-  flex-wrap: wrap;
 
-  .pokemon-card {
-    margin: 30px 40px;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 14px;
-    img {
-      max-height: 200px;
+.home-page-container {
+  width: 100vw;
+  display: flex;
+
+  .sidebar {
+    width: 20vw;
+  }
+
+
+
+  .pokemon-cards-container {
+
+    width: 80vw;
+    display: flex;
+    flex-wrap: wrap;
+
+    .pokemon-card {
+       margin: 30px 40px;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      img {
+        max-height: 200px;
+      }
     }
   }
+
 }
+
+
