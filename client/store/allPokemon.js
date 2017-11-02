@@ -22,7 +22,7 @@ const getAllPokemon = allPokemon => ({ type: GET_ALL_POKEMON, allPokemon })
 
 export const fetchAllPokemon = () => {
     return dispatch =>
-        axios.get('/api/allpokemon')
+        axios.get('/api/pokemon')
             .then(res => res.data)
             .then(allpokemon => {
                 dispatch(getAllPokemon(allpokemon))

@@ -1,7 +1,7 @@
 const router = require('express').Router()
 module.exports = router
 router.use('/users', require('./users'))
-router.use('/allpokemon', require('./allpokemon'))
+router.use('/pokemon', require('./pokemon'))
 //chage back to /pokemon
 
 router.use((req, res, next) => {
