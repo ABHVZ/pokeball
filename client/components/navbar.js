@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Input, Menu, Button, Image, Icon, Container } from 'semantic-ui-react';
+import { Menu, Button, Image, Icon, Container } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { Link, NavLink, withRouter } from 'react-router-dom';
+import Search from './search';
 
 class Navbar extends Component {
   constructor(props) {
@@ -11,10 +12,10 @@ class Navbar extends Component {
     }
   }
 
-  handleItemClick = (elem, { name }) => this.setState({ activeItem: name })
+  handleItemClick = (elem, { name }) => this.setState({ activeItem: name }) // get rid of this before PR
 
   render() {
-    const { activeItem } = this.state
+    // const { activeItem } = this.state
 
     return (
       <div>
@@ -25,8 +26,8 @@ class Navbar extends Component {
             <Menu.Item
               header
               as="a"
-              active={activeItem === 'home'}
-              onClick={this.handleItemClick}
+              // active={activeItem === 'home'}
+              onClick={this.handleItemClick} // get rid of this before PR
               name="home">
               <Image
                 size="mini"
@@ -39,11 +40,7 @@ class Navbar extends Component {
           </NavLink>
 
           <Menu.Item>
-            <Input
-              icon="search"
-              fluid
-              placeholder="Search..."
-            />
+            <Search />
           </Menu.Item>
 
           <Menu.Menu position="right">
