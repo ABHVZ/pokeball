@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Card, Image, Button, Icon } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 
+//seperate stateful and container components
+
 export default class PokemonCard extends Component {
     constructor(props) {
         super(props);
