@@ -28,9 +28,22 @@ body {
 
   .sidebar {
     width: 20vw;
+
+    .min-max-price-form {
+      width: 20vw;
+
+      .price-input {
+        width: 4vw;
+        outline: none;
+      }
+
+      .price-submit-button {
+        width: 4vw;
+
+      }
+    }
+
   }
-
-
 
   .pokemon-cards-container {
 
@@ -42,6 +55,7 @@ body {
       margin: 30px 40px;
       font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
       font-size: 14px;
+      border: none;
       img {
         max-height: 240px;
       }

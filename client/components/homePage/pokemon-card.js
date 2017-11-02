@@ -16,7 +16,7 @@ export default class PokemonCard extends Component {
         const { name, type1, total, hp, atk, gen, imgUrl, id } = this.props.pokemon;
         return (
             <Card id={id} className="pokemon-card">
-                <Link to={`/allpokemon/${id}`}>
+                <Link to={`/pokemon/${id}`}>
                     <Image src={imgUrl} centered />
                 </Link>
                 <Card.Content>

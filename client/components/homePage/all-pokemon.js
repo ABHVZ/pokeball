@@ -8,6 +8,9 @@ const pokemonPerPage = 30;
 const getCurrentPagePokemon = (allPokemon, currentPageIndex) => {
     return allPokemon.slice((currentPageIndex - 1) * 30, currentPageIndex * 30)
 }
+const filterPokemonByPrice = (min, max, pokemon) => {
+    return pokemon.filter(pokemon => pokemon.total >= min && pokemon.total <= max)
+}
 
 class AllPokemon extends Component {
     constructor(props) {
@@ -20,18 +23,21 @@ class AllPokemon extends Component {
 
     render() {
         const { allPokemon } = this.props;
+        let filteredPokemon = filterPokemonByPrice(this.props.minPriceFilter, this.props.maxPriceFilter, allPokemon);
+
         let pageButtons = [];
 
-        _.range(1, allPokemon.length / pokemonPerPage).map(pageIndex => {
+        _.range(1, filteredPokemon.length / pokemonPerPage).map(pageIndex => {
             pageButtons.push(<button onClick={this.setCurrentPage}>{pageIndex}</button>)
         })
+
 
         return (
             <div>
                 <h1>Shop Pokemon</h1>
 
                 <div className="pokemon-cards-container">
-                    {allPokemon && getCurrentPagePokemon(allPokemon, this.state.currentPage).map(pokemon => (
+                    {filteredPokemon && getCurrentPagePokemon(filteredPokemon, this.state.currentPage).map(pokemon => (
                         <PokemonCard pokemon={pokemon} />
                     ))}
                 </div>
@@ -51,7 +57,9 @@ class AllPokemon extends Component {
 
 function mapStateToProps(state) {
     return {
-        allPokemon: state.allPokemon
+        allPokemon: state.allPokemon,
+        minPriceFilter: state.minPriceFilter,
+        maxPriceFilter: state.maxPriceFilter
     }
 }
 
