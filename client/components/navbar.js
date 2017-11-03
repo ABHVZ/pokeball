@@ -20,7 +20,7 @@ class Navbar extends Component {
     return (
       <div>
       <Container>
-        <Menu fixed="top">
+        <Menu fixed="top" borderless>
 
           <NavLink to="/" activeClassName="active">
             <Menu.Item
@@ -38,7 +38,7 @@ class Navbar extends Component {
             </Menu.Item>
           </NavLink>
 
-          <Menu.Item>
+          <Menu.Item id="searchBar">
             <Search />
           </Menu.Item>
 

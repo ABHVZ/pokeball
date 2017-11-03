@@ -1,4 +1,4 @@
-import { Input, Search } from 'semantic-ui-react';
+import { Search, Container } from 'semantic-ui-react';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
@@ -38,8 +38,6 @@ import axios from 'axios';
 //   }
 // ]
 
-let source = [];
-
 class SearchBar extends Component {
   constructor(props) {
     super(props);
@@ -48,8 +46,8 @@ class SearchBar extends Component {
       //   results: [],
       //   value: ''
       // }
-      // this.handleChange = this.handleChange.bind(this);
-      // this.handleSelect = this.handleSelect.bind(this);
+      this.handleSearchChange = this.handleSearchChange.bind(this);
+      this.handleResultSelect = this.handleResultSelect.bind(this);
       // this.onSubmit = this.onSubmit.bind(this);
     }
 
@@ -63,44 +61,44 @@ class SearchBar extends Component {
       value: ''
     })
 
-    handleSelect = (elem, { selection }) => this.setState({ value: selection.name });
+    handleResultSelect = (elem, { result }) => this.setState({ value: result.name })
 
-    handleChange = (elem, { value }) => {
+    handleSearchChange = (elem, { value }) => {
       this.setState({ isLoading: true, value })
       setTimeout(() => {
         if (this.state.value.length < 1) return this.resetComponent();
         const re = new RegExp(_.escapeRegExp(this.state.value)) // , 'i'
-        console.log(re);
         axios.get(`/api/pokemon/search${re}`) // json
-          .then(res => res.json())
-          .then(json => { source = json })
+          // .then(pokemon => pokemon.json())
+          .then(pokemon => {
+            this.setState({
+              isLoading: false,
+              results: pokemon.data
+              // results: _.filter(source, isMatch),
+            })
+          })
         // const isMatch = result => re.test(result.title)
-
-      this.setState({
-        isLoading: false,
-        results: source
-        // results: _.filter(source, isMatch),
-      })
     }, 500)
   }
 
   render() {
-    const pokemon = this.props.allPokemon;
+    // const pokemon = this.props.allPokemon;
     const { isLoading, value, results } = this.state
 
     return (
       <div>
 
+      <Container fluid>
           <Search
             fluid
             loading={isLoading}
-            onResultSelect={this.handleSelect}
-            onSearchChange={this.handleChange}
+            onResultSelect={this.handleResultSelect}
+            onSearchChange={this.handleSearchChange}
             results={results}
             value={value}
             {...this.props}
           />
-
+      </Container>
         {
           // <Input
           //   icon="search"
