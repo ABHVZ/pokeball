@@ -53,8 +53,8 @@ const Pokemon = db.define('pokemon', {
   price: {
     type: Sequelize.VIRTUAL,
     get: function () {
-      const legendMulti = this.legendary ? 20 : 1;
-      return this.total * legendMulti;
+      const val = this.total * (this.legendary ? 20 : 1);
+      return `$${val.toFixed(2)}`;
     }
   },
   total: {
@@ -106,12 +106,16 @@ const Pokemon = db.define('pokemon', {
     type: Sequelize.BOOLEAN,
     defaultValue: false
   },
-  imgUrl: {
+  image: {
     type: Sequelize.STRING,
     defaultValue: 'https://pre00.deviantart.net/d1d9/th/pre/i/2017/051/5/3/pokemon_egg__standard_2k__by_maniraptavia-daghxb1.png',
     validate: {
       isUrl: true
     }
+  },
+  title: {
+    type: Sequelize.VIRTUAL,
+    get: function () { return this.name }
   }
 });
 

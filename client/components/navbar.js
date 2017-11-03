@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Menu, Button, Image, Icon, Container } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import { Link, NavLink, withRouter } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import Search from './search';
 
 class Navbar extends Component {
@@ -20,7 +20,7 @@ class Navbar extends Component {
     return (
       <div>
       <Container>
-        <Menu fixed="top">
+        <Menu fixed="top" borderless>
 
           <NavLink to="/" activeClassName="active">
             <Menu.Item
@@ -38,7 +38,7 @@ class Navbar extends Component {
             </Menu.Item>
           </NavLink>
 
-          <Menu.Item>
+          <Menu.Item id="searchBar">
             <Search />
           </Menu.Item>
 
