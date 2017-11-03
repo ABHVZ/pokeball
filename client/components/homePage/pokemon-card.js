@@ -10,7 +10,7 @@ const Pokemon = (props) => {
         <div id={id} className="pokemon-card">
             <div>
                 <Link to={`/pokemon/${id}`}>
-                    <Image src={imgUrl} centered />
+                    <Image src={image} centered />
                 </Link>
             </div>
             <div>
