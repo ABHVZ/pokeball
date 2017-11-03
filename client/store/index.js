@@ -9,6 +9,7 @@ import { composeWithDevTools } from 'redux-devtools-extension'
  */
 import user from './user'
 import allPokemon from './allPokemon'
+import singlePokemon from './singlePokemon'
 import maxPriceFilter from './maxPriceFilter'
 import minPriceFilter from './minPriceFilter'
 
@@ -17,6 +18,7 @@ import minPriceFilter from './minPriceFilter'
 const reducer = combineReducers({
   user,
   allPokemon,
+  singlePokemon,
   minPriceFilter,
   maxPriceFilter
 })
@@ -33,6 +35,7 @@ const store = createStore(reducer, middleware)
 export default store
 export * from './user'
 export * from './allPokemon'
+export * from './singlePokemon'
 export * from './minPriceFilter'
 export * from './maxPriceFilter'
 

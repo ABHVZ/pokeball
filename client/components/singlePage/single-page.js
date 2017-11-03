@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
+import * as actions from '../../store'
 import { Container, Grid, Image, Input, Button, Table, Dropdown } from 'semantic-ui-react';
 const ImageURL = 'https://pre00.deviantart.net/d1d9/th/pre/i/2017/051/5/3/pokemon_egg__standard_2k__by_maniraptavia-daghxb1.png';
 
@@ -11,7 +13,19 @@ class SinglePage extends Component {
     }
   }
 
+  componentDidMount() {
+  	const { id } = this.props.match.params
+  	this.props.fetchSinglePokemon(id)
+  }
+
   render() {
+
+  	console.log('SinglePage rendered')
+  	console.log('this.props');
+  	console.log(this.props.singlePokemon)
+
+  	const { name, atk, def, gen, hp, spAtk, spDef, speed, total, type1, type2, price } = this.props.singlePokemon
+
   	const options = [
 	  { key: 1, text: '1', value: 1 },
 	  { key: 2, text: '2', value: 2 },
@@ -27,12 +41,12 @@ class SinglePage extends Component {
     	 <Grid divided='vertically'>
 		    <Grid.Row columns={2}>
 		      <Grid.Column centered>
-		      	<h1>Pokemon Name</h1>
+		      	<h1>{name}</h1>
 				<Image style={{width: '30%', paddingLeft: '1em'}} src={ImageURL}/>
 		      </Grid.Column>
 		      <Grid.Column>
 		      	<div>
-		      		<h1>Price: $100 </h1>
+		      		<h1>Price: ${price}</h1>
       		  	  	<Dropdown placeholder='0' search selection options={options} />
 
   		  	      	<Button>Buy now</Button>	
@@ -61,16 +75,16 @@ class SinglePage extends Component {
 
 				    <Table.Body>
 				      <Table.Row>
-				        <Table.Cell>Name</Table.Cell>
-				        <Table.Cell>Type 1</Table.Cell>
-				        <Table.Cell>Type 2</Table.Cell>
-				        <Table.Cell>Total</Table.Cell>
-				        <Table.Cell>Hitpoints</Table.Cell>
-				        <Table.Cell>Attack</Table.Cell>
-				        <Table.Cell>Defence</Table.Cell>
-				        <Table.Cell>Special Attack</Table.Cell>
-				        <Table.Cell>Special Defence</Table.Cell>
-				        <Table.Cell>Speed</Table.Cell>
+				        <Table.Cell>{name}</Table.Cell>
+				        <Table.Cell>{type1}</Table.Cell>
+				        <Table.Cell>{type2}</Table.Cell>
+				        <Table.Cell>{total}</Table.Cell>
+				        <Table.Cell>{hp}</Table.Cell>
+				        <Table.Cell>{atk}</Table.Cell>
+				        <Table.Cell>{def}</Table.Cell>
+				        <Table.Cell>{spAtk}</Table.Cell>
+				        <Table.Cell>{spDef}</Table.Cell>
+				        <Table.Cell>{speed}</Table.Cell>
 				      </Table.Row>
 				     
 				    </Table.Body>
@@ -83,4 +97,10 @@ class SinglePage extends Component {
   }
 }
 
-export default SinglePage;
+function mapStateToProps(state) {
+	return {
+		singlePokemon: state.singlePokemon
+	}
+}
+
+export default connect(mapStateToProps, actions)(SinglePage)
