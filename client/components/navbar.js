@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Menu, Button, Image, Icon, Container } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import { Link, NavLink, withRouter } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import Search from './search';
 
 class Navbar extends Component {
