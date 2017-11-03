@@ -18,3 +18,13 @@ router.get('/:id', (req, res, next) => {
 			})
 		.catch(next)
 })
+router.get('/search/:input', (req, res, next) => {
+    Pokemon.findAll({
+        limit: 10,
+        where: {
+            name: { $ilike: `%${req.params.input}%` },
+        }
+    })
+        .then(searchedPokemon => res.json(searchedPokemon))
+        .catch(next)
+})
