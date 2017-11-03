@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import * as actions from '../../store'
+import axios from 'axios'
 
 //only import what we need - below is carry-over from single-page
 import { Container, Grid, Image, Dropdown, Button, Segment, Divider, Header, Table } from 'semantic-ui-react';
@@ -16,6 +17,7 @@ class CartPage extends Component {
   }
 
   componentDidMount() {
+    axios.get("/api/cart")
   }
 
   render() {
