@@ -8,7 +8,7 @@ class Navbar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeItem: 'home'
+      // activeItem: 'home'
     }
   }
 
@@ -25,7 +25,6 @@ class Navbar extends Component {
           <NavLink to="/" activeClassName="active">
             <Menu.Item
               header
-              as="a"
               // active={activeItem === 'home'}
               onClick={this.handleItemClick} // get rid of this before PR
               name="home">
@@ -55,7 +54,7 @@ class Navbar extends Component {
 
           <NavLink to="/login" activeClassName="active">
             <Menu.Item className="item">
-              <Button compact as="a">
+                  <Button compact>
                 Log In
               </Button>
             </Menu.Item>
@@ -63,7 +62,7 @@ class Navbar extends Component {
 
           <NavLink to="/signup" activeClassName="active">
             <Menu.Item className="item">
-              <Button compact as="a" primary>
+                  <Button compact primary>
                 Sign Up
               </Button>
             </Menu.Item>
