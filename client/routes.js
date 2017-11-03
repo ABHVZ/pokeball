@@ -4,8 +4,7 @@ import { Router } from 'react-router'
 import { Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import { Main, Login, Signup, UserHome, HomePage, Navbar } from './components';
-import SinglePage from './components/singlePage/single-page';
+import { Main, Login, Signup, UserHome, HomePage, Navbar, SinglePage } from './components';
 import { me, fetchAllPokemon } from './store'
 
 /**
