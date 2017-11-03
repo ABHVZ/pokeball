@@ -1,13 +1,13 @@
 // ACTION TYPES
 
-const SET_MIN_PRICE = 'SET_MIN_PRICE';
+const SET_MIN_HP = 'SET_MIN_HP';
 
 // ACTION CREATORS
 
-export function setMinPrice(price) {
+export function setMinHP(hp) {
     return {
-        type: SET_MIN_PRICE,
-        price
+        type: SET_MIN_HP,
+        hp
     };
 }
 
@@ -16,8 +16,8 @@ export default function reducer(state = 0, action) {
 
     switch (action.type) {
 
-        case SET_MIN_PRICE:
-            return action.price;
+        case SET_MIN_HP:
+            return action.hp;
 
         default:
             return state;
