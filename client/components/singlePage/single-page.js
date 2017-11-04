@@ -50,7 +50,7 @@ class SinglePage extends Component {
 		      		<h1>Price: ${price}</h1>
       		  	  	<Dropdown placeholder='0' search selection options={options} />
 
-  		  	      	<Button onClick={addPokemonToSession(this.props.SinglePokemon)}>Buy now</Button>	
+  		  	      	<Button onClick={() => addPokemonToSession(this.props.singlePokemon)}>Buy now</Button>	
 		      	</div>
 		      </Grid.Column>
 		    </Grid.Row>
