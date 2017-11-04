@@ -17,7 +17,7 @@ class CartPage extends Component {
   }
 
   componentDidMount() {
-    axios.get("/api/cart")
+    // axios.get("/api/cart")
   }
 
   render() {
