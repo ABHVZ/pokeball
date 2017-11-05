@@ -13,9 +13,7 @@ router.get('/:id', (req, res, next) => {
 	console.log('Getting single pokemon...');
 	const { id } = req.params;
 	Pokemon.findOne({where: { id }})
-		.then(pokemon => {
-				res.json(pokemon)
-			})
+		.then(pokemon => res.json(pokemon))
 		.catch(next)
 })
 router.get('/search/:input', (req, res, next) => {

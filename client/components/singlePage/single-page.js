@@ -11,28 +11,40 @@ class SinglePage extends Component {
   constructor(props) {
     super(props)
     this.state = {
-
+    	dropdownValue: 1
     }
+    this.handleDropdown = this.handleDropdown.bind(this)
+    this.editPokemonQuantity = this.editPokemonQuantity.bind(this)
   }
 
-  componentDidMount() {
-  	const { id } = this.props.match.params
-  	this.props.fetchSinglePokemon(id)
-  }
+	componentDidMount() {
+		const { id } = this.props.match.params
+		this.props.fetchSinglePokemon(id)
+	}
+
+	handleDropdown(e, data) {
+		this.setState({ dropdownValue: data.value })
+	}
+
+	// addPokemonToSession = (qty, singlePokemon) => {
+	//     axios.post(`/api/cart`, {qty, singlePokemon})
+	//         .catch(err => console.log(err))
+	// }
+
+	editPokemonQuantity = (finalQty, singlePokemon) => {
+		axios.post(`/api/cart/edit`, {finalQty, singlePokemon})
+			.catch(err => console.log(err))
+	}
 
   render() {
-
-  	const addPokemonToSession = singlePokemon => {
-	    axios.post(`/api/cart`, {singlePokemon})
-	        .catch(err => console.log(err))
-	}
 
   	console.log('SinglePage rendered')
   	console.log('this.props');
   	console.log(this.props.singlePokemon)
-
+  	console.log('this.state.dropdownValue', this.state.dropdownValue)
   	const { name, atk, def, gen, hp, spAtk, spDef, speed, total, type1, type2, price } = this.props.singlePokemon
 
+  	// Dropdown menu options
   	const options = [
 	  { key: 1, text: '1', value: 1 },
 	  { key: 2, text: '2', value: 2 },
@@ -44,6 +56,7 @@ class SinglePage extends Component {
 	  { key: 8, text: '8', value: 8 },
 	  { key: 9, text: '9', value: 9 },
 	]
+
     return (
     	 <Grid divided='vertically'>
 		    <Grid.Row columns={2}>
@@ -54,9 +67,10 @@ class SinglePage extends Component {
 		      <Grid.Column>
 		      	<div>
 		      		<h1>Price: ${price}</h1>
-      		  	  	<Dropdown placeholder='0' search selection options={options} />
+      		  	  	<Dropdown defaultValue={1} onChange={this.handleDropdown} search selection options={options} />
 
-  		  	      	<Button onClick={() => addPokemonToSession(this.props.singlePokemon)}>Buy now</Button>	
+  		  	      	<Button onClick={() => this.props.addPokemonToSession(this.state.dropdownValue, this.props.singlePokemon)}>Buy now</Button>	
+  		  	      	<Button onClick={() => this.editPokemonQuantity()}>Edit Test</Button>
 		      	</div>
 		      </Grid.Column>
 		    </Grid.Row>
