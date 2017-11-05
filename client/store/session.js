@@ -80,15 +80,23 @@ export const deletePokemonInSession = (id) => {
 export default function (state = {}, action) {
     switch (action.type) {
     	case GET_CART:
-    		return {...state, cart: action.payload }
+    		return {...state, cart: action.payload, totalPrice: getTotalPrice(action.payload), totalQuantity: getTotalQuantity(action.payload) }
 		case ADD_TO_CART:
 			const { id } = action.payload.pokemon
-			return {...state, cart: {...state.cart, [id]: action.payload}}
+			let cart = {...state.cart, [id]: action.payload}
+			return {...state, cart, totalPrice: getTotalPrice(cart), totalQuantity: getTotalQuantity(cart), lastPurchased: action.payload.pokemon}
 		case EDIT_CART:
-			return {...state, cart: action.payload }
+			return {...state, cart: action.payload, totalPrice: getTotalPrice(action.payload), totalQuantity: getTotalQuantity(action.payload) }
 		case DELETE_FROM_CART:
-			return {...state, cart: action.payload }
+			return {...state, cart: action.payload, totalPrice: getTotalPrice(action.payload), totalQuantity: getTotalQuantity(action.payload) }
         default:
             return state
     }
+}
+
+function getTotalPrice(cart) {
+	return Object.values(cart).reduce(function(acc, curr) { return acc + curr.pokemon.price * curr.qty}, 0) 
+}
+function getTotalQuantity(cart) {
+	return Object.values(cart).reduce(function(acc, cur) { return acc + 1 * cur.qty }, 0)
 }

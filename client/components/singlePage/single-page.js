@@ -26,11 +26,6 @@ class SinglePage extends Component {
 		this.setState({ dropdownValue: data.value })
 	}
 
-	// addPokemonToSession = (qty, singlePokemon) => {
-	//     axios.post(`/api/cart`, {qty, singlePokemon})
-	//         .catch(err => console.log(err))
-	// }
-
 	editPokemonQuantity = (finalQty, singlePokemon) => {
 		axios.post(`/api/cart/edit`, {finalQty, singlePokemon})
 			.catch(err => console.log(err))
@@ -58,6 +53,7 @@ class SinglePage extends Component {
 	]
 
     return (
+    	<Container style={{paddingTop: '1em'}}>
     	 <Grid divided='vertically'>
 		    <Grid.Row columns={2}>
 		      <Grid.Column centered>
@@ -69,8 +65,10 @@ class SinglePage extends Component {
 		      		<h1>Price: ${price}</h1>
       		  	  	<Dropdown defaultValue={1} onChange={this.handleDropdown} search selection options={options} />
 
-  		  	      	<Button onClick={() => this.props.addPokemonToSession(this.state.dropdownValue, this.props.singlePokemon)}>Buy now</Button>	
-  		  	      	<Button onClick={() => console.log('this.state.dropdownValue', this.state.dropdownValue)}>Edit Test</Button>
+  		  	      	<Button onClick={() => {
+  		  	      		this.props.addPokemonToSession(this.state.dropdownValue, this.props.singlePokemon) // Accepts quantity and pokemon object
+  		  	      		this.props.history.push('/cart/added') // Redirect user to latest purchase and recommmendations
+  		  	      	}}>Buy now</Button>	
 		      	</div>
 		      </Grid.Column>
 		    </Grid.Row>
@@ -114,6 +112,7 @@ class SinglePage extends Component {
 		      </Grid.Column>
 		    </Grid.Row>
 		  </Grid>
+	  	</Container>
     )
   }
 }
