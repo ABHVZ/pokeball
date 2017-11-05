@@ -39,91 +39,91 @@ class CartAddedPage extends Component {
 		// Conditionally render once props are received from single page purchase
 		console.log('this.state', this.state)
 		if (this.props.lastPurchased !== undefined) {
-		const { totalPrice, totalQuantity, lastPurchased } = this.props
-			return(
-			<Container style={{paddingTop: '3em'}}>
-				<Segment>
-					<Grid>
-			            <Grid.Column width={4}>
-			            	<Header as='h3' image>
-							  <Image src={ImageURL} shape='rounded' size='mini' />
-							  <Header.Content>
-							      {lastPurchased.name}
-							    <Header.Subheader 
-							    	size='tiny'
-							    	>Added to Cart
+			const { totalPrice, totalQuantity, lastPurchased } = this.props
+			return (
+				<Container style={{ paddingTop: '3em' }}>
+					<Segment>
+						<Grid>
+							<Grid.Column width={4}>
+								<Header as='h3' image>
+									<Image src={ImageURL} shape='rounded' size='mini' />
+									<Header.Content>
+										{lastPurchased.name}
+										<Header.Subheader
+											size='tiny'
+										>Added to Cart
 						    	</Header.Subheader>
-							  </Header.Content>
-							
-							</Header>
-			            </Grid.Column>
+									</Header.Content>
 
-			            <Grid.Column width={7}>
-			             <h3 style={{display: 'inline-block'}}>Cart subtotal ({totalQuantity} items): <span style={{color: '#E31F64'}}>${totalPrice}</span></h3>
-			            </Grid.Column>
-			            <Grid.Column width={5}>
-			             <Button><Link to='/cart'>Cart</Link></Button>
+								</Header>
+							</Grid.Column>
 
-			         {/* 
+							<Grid.Column width={7}>
+								<h3 style={{ display: 'inline-block' }}>Cart subtotal ({totalQuantity} items): <span style={{ color: '#E31F64' }}>${totalPrice}</span></h3>
+							</Grid.Column>
+							<Grid.Column width={5}>
+								<Button><Link to='/cart'>Cart</Link></Button>
+
+								{/* 
 						USER CHECKOUT
 						- When user is logged in; proceed to checkout page
 						- When user is NOT logged in; proceed to sign up page and persist cart into database under user
 			          */}
-			             
-			             <Button>Proceed to checkout ({totalQuantity} items)</Button>
-			            </Grid.Column>
-			          </Grid>
-				</Segment>
 
-				<Header>Recommended for you based on Pikachu</Header>
+								<Button>Proceed to checkout ({totalQuantity} items)</Button>
+							</Grid.Column>
+						</Grid>
+					</Segment>
 
-				<Grid columns={3}>
-		            <Grid.Column>
-		            	<Image src={ImageURL} centered size="small" shape='rounded'/>
-		            	<Header textAlign='center'>Pikachu</Header>
-		            </Grid.Column>
-		            <Grid.Column>
-		            	<Image src={ImageURL} centered size="small" shape='rounded'/>
-		            	<Header textAlign='center'>Pikachu</Header>
-		            </Grid.Column>
-		            <Grid.Column>
-		            	<Image src={ImageURL} centered size="small" shape='rounded'/>
-		            	<Header textAlign='center'>Pikachu</Header>
-		            </Grid.Column>
-	          	</Grid>
+					<Header>Recommended for you based on Pikachu</Header>
+
+					<Grid columns={3}>
+						<Grid.Column>
+							<Image src={ImageURL} centered size="small" shape='rounded' />
+							<Header textAlign='center'>Pikachu</Header>
+						</Grid.Column>
+						<Grid.Column>
+							<Image src={ImageURL} centered size="small" shape='rounded' />
+							<Header textAlign='center'>Pikachu</Header>
+						</Grid.Column>
+						<Grid.Column>
+							<Image src={ImageURL} centered size="small" shape='rounded' />
+							<Header textAlign='center'>Pikachu</Header>
+						</Grid.Column>
+					</Grid>
 
 
-				<Header>Customers who shopped for Pikachu also shopped for:</Header>
+					<Header>Customers who shopped for Pikachu also shopped for:</Header>
 
-				<Grid columns={3}>
-		            <Grid.Column>
-		            	<Image src={ImageURL} centered size="small" shape='rounded'/>
-		            	<Header textAlign='center'>Pikachu</Header>
-		            </Grid.Column>
-		            <Grid.Column>
-		            	<Image src={ImageURL} centered size="small" shape='rounded'/>
-		            	<Header textAlign='center'>Pikachu</Header>
-		            </Grid.Column>
-		            <Grid.Column>
-		            	<Image src={ImageURL} centered size="small" shape='rounded'/>
-		            	<Header textAlign='center'>Pikachu</Header>
-		            </Grid.Column>
-		          </Grid>
+					<Grid columns={3}>
+						<Grid.Column>
+							<Image src={ImageURL} centered size="small" shape='rounded' />
+							<Header textAlign='center'>Pikachu</Header>
+						</Grid.Column>
+						<Grid.Column>
+							<Image src={ImageURL} centered size="small" shape='rounded' />
+							<Header textAlign='center'>Pikachu</Header>
+						</Grid.Column>
+						<Grid.Column>
+							<Image src={ImageURL} centered size="small" shape='rounded' />
+							<Header textAlign='center'>Pikachu</Header>
+						</Grid.Column>
+					</Grid>
 
-			</Container>
-		)
+				</Container>
+			)
 		}
 		else return <div>Loading</div>
-	
+
 	}
 }
 
 function mapStateToProps(state) {
 	return {
-    cart: state.session.cart,
-    totalPrice: state.session.totalPrice,
-    totalQuantity: state.session.totalQuantity,
-    lastPurchased: state.session.lastPurchased
+		cart: state.session.cart,
+		totalPrice: state.session.totalPrice,
+		totalQuantity: state.session.totalQuantity,
+		lastPurchased: state.session.lastPurchased
 	}
 }
 

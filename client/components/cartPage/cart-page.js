@@ -13,7 +13,7 @@ class CartPage extends Component {
   constructor(props) {
     super(props)
     this.state = {
-        cartItems: {}
+      cartItems: {}
     }
   }
 
@@ -26,72 +26,72 @@ class CartPage extends Component {
     if (this.props.cart) {
       const cart = Object.values(this.props.cart)
       const CartItems = cart.map(item => {
-        return <CartItem 
-          qty={item.qty} 
-          name={item.pokemon.name} 
-          price={item.pokemon.price} 
-          id={item.pokemon.id} 
+        return <CartItem
+          qty={item.qty}
+          name={item.pokemon.name}
+          price={item.pokemon.price}
+          id={item.pokemon.id}
           editPokemonInSession={this.props.editPokemonInSession}
           deletePokemonInSession={this.props.deletePokemonInSession}
-          />
+        />
       })
       console.log('this.props.cart', this.props.cart)
       const { totalPrice, totalQuantity } = this.props
-      
+
       return (
-        <Container style={{paddingTop: '1em'}}>
+        <Container style={{ paddingTop: '1em' }}>
           <Grid divided='vertically'>
-          <Grid.Row>
-            <Grid.Column width={12}>
+            <Grid.Row>
+              <Grid.Column width={12}>
 
                 <Table basic='very'>
-                <Table.Header>
-                  <Table.Row>
-                    <Table.HeaderCell>Shopping Cart</Table.HeaderCell>
-                    <Table.HeaderCell>Price</Table.HeaderCell>
-                    <Table.HeaderCell><div style={{float: 'right'}}>Quantity</div></Table.HeaderCell>
-                  </Table.Row>
-                </Table.Header>
+                  <Table.Header>
+                    <Table.Row>
+                      <Table.HeaderCell>Shopping Cart</Table.HeaderCell>
+                      <Table.HeaderCell>Price</Table.HeaderCell>
+                      <Table.HeaderCell><div style={{ float: 'right' }}>Quantity</div></Table.HeaderCell>
+                    </Table.Row>
+                  </Table.Header>
 
-                <Table.Body>
-                  
-                  {CartItems}
-                </Table.Body>
+                  <Table.Body>
 
-              </Table>
-              <Divider /> 
-              <div style={{float: 'right'}}> <h3>Subtotal ({totalQuantity} Pokemon): <span style={{color: '#E31F64'}}>{`$${totalPrice}`}</span></h3></div>
+                    {CartItems}
+                  </Table.Body>
 
-            </Grid.Column>
-
-
-
-            <Grid.Column width={4}>
-              <Segment>
-                <h3>Subtotal ({totalQuantity} Pokemon): <span style={{color: '#E31F64'}}>{`$${totalPrice}`}</span></h3>
+                </Table>
                 <Divider />
-                <div style={{textAlign: 'center'}}>
-                <Button>Proceed to checkout</Button></div>
-                
-              </Segment>
-            </Grid.Column>
-          </Grid.Row>
+                <div style={{ float: 'right' }}> <h3>Subtotal ({totalQuantity} Pokemon): <span style={{ color: '#E31F64' }}>{`$${totalPrice}`}</span></h3></div>
 
-          
-        </Grid>
+              </Grid.Column>
+
+
+
+              <Grid.Column width={4}>
+                <Segment>
+                  <h3>Subtotal ({totalQuantity} Pokemon): <span style={{ color: '#E31F64' }}>{`$${totalPrice}`}</span></h3>
+                  <Divider />
+                  <div style={{ textAlign: 'center' }}>
+                    <Button>Proceed to checkout</Button></div>
+
+                </Segment>
+              </Grid.Column>
+            </Grid.Row>
+
+
+          </Grid>
         </Container>
-      )    
+      )
     }
-   else return <div>Loading</div>
+    else return <div>Loading</div>
   }
 }
 
 function mapStateToProps(state) {
-	return {
+  return {
     cart: state.session.cart,
     totalPrice: state.session.totalPrice,
     totalQuantity: state.session.totalQuantity,
     lastPurchased: state.session.lastPurchased
-	}
+  }
 }
 export default connect(mapStateToProps, actions)(CartPage);
