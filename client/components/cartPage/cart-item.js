@@ -26,13 +26,10 @@ class CartItem extends Component {
 
 	handleDropdown(e, data) {
 		this.setState({ dropdownValue: data.value })
-		console.log(data.value)
 		this.props.editPokemonInSession(data.value, this.props.id)
 	}
 
 	render() {
-		
-		console.log('CartItem props', this.props)	
 		const { qty, name, price, id } = this.props		
 
 		return(

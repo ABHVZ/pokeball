@@ -18,8 +18,6 @@ class CartPage extends Component {
   }
 
   componentDidMount() {
-    console.log('componentDidMount in cartpage')
-    console.log(this.props)
     this.props.fetchCartFromSession()
   }
 
@@ -37,8 +35,8 @@ class CartPage extends Component {
           deletePokemonInSession={this.props.deletePokemonInSession}
           />
       })
-      const totalPrice = cart.reduce(function(acc, cur) { return acc + cur.pokemon.price * cur.qty }, 0)
-      const totalPokemon = cart.reduce(function(acc, cur) { return acc + 1 * cur.qty }, 0)
+      console.log('this.props.cart', this.props.cart)
+      const { totalPrice, totalQuantity } = this.props
       
       return (
         <Container style={{paddingTop: '1em'}}>
@@ -62,7 +60,7 @@ class CartPage extends Component {
 
               </Table>
               <Divider /> 
-              <div style={{float: 'right'}}> <h3>Subtotal ({totalPokemon} Pokemon): <span style={{color: '#E31F64'}}>{`$${totalPrice}`}</span></h3></div>
+              <div style={{float: 'right'}}> <h3>Subtotal ({totalQuantity} Pokemon): <span style={{color: '#E31F64'}}>{`$${totalPrice}`}</span></h3></div>
 
             </Grid.Column>
 
@@ -70,7 +68,7 @@ class CartPage extends Component {
 
             <Grid.Column width={4}>
               <Segment>
-                <h3>Subtotal ({totalPokemon} Pokemon): <span style={{color: '#E31F64'}}>{`$${totalPrice}`}</span></h3>
+                <h3>Subtotal ({totalQuantity} Pokemon): <span style={{color: '#E31F64'}}>{`$${totalPrice}`}</span></h3>
                 <Divider />
                 <div style={{textAlign: 'center'}}>
                 <Button>Proceed to checkout</Button></div>
@@ -90,7 +88,10 @@ class CartPage extends Component {
 
 function mapStateToProps(state) {
 	return {
-    cart: state.session.cart
+    cart: state.session.cart,
+    totalPrice: state.session.totalPrice,
+    totalQuantity: state.session.totalQuantity,
+    lastPurchased: state.session.lastPurchased
 	}
 }
 export default connect(mapStateToProps, actions)(CartPage);

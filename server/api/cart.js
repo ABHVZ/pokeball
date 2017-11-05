@@ -37,9 +37,6 @@ router.post('/', (req, res, next) => {
 
 // Access from cart page only - edit Pokemon quantity
 router.put('/', (req, res, next) => {
-    console.log('Editing session...')
-    console.log('qty:', req.body.qty)
-    console.log('id:', req.body.id)
     const { qty, id } = req.body
     // console.log('req.sessions.cart', req.session.cart)
     req.session.cart[id].qty = qty
