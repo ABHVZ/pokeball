@@ -18,7 +18,18 @@ const options = [
 class CartItem extends Component {
 	constructor(props) {
 		super(props)
+		this.state = {
+			dropdownValue: this.props.qty
+		}
+		this.handleDropdown = this.handleDropdown.bind(this)
 	}
+
+	handleDropdown(e, data) {
+		this.setState({ dropdownValue: data.value })
+		console.log(data.value)
+		this.props.editPokemonInSession(data.value, this.props.id)
+	}
+
 	render() {
 		
 		console.log('CartItem props', this.props)	
@@ -27,13 +38,17 @@ class CartItem extends Component {
 		return(
 			<Table.Row>
 				<Table.Cell>
-				<Header as='h4' image>
+				<Header as='h3' image>
 				  <Image src={ImageURL} shape='rounded' size='mini' />
 				  <Header.Content>
 				   <Link to={`/pokemon/${id}`}>
 				      {name}
 				      </Link>
-				    <Header.Subheader></Header.Subheader>
+				    <Header.Subheader 
+				    	size='tiny'
+				    	onClick={() => this.props.deletePokemonInSession(id)}
+				    	>Delete
+			    	</Header.Subheader>
 				  </Header.Content>
 				
 				</Header>
@@ -42,7 +57,7 @@ class CartItem extends Component {
 					{`$${price}`}
 				</Table.Cell>
 				<Table.Cell>
-				  <div style={{float: 'right'}}><Dropdown compact defaultValue={qty} search selection options={options} /></div>
+				  <div style={{float: 'right'}}><Dropdown compact onChange={this.handleDropdown} defaultValue={qty} search selection options={options} /></div>
 				</Table.Cell>
 			</Table.Row>
 		)

@@ -4,7 +4,7 @@ import * as actions from '../../store'
 import axios from 'axios'
 
 //only import what we need - below is carry-over from single-page
-import { Container, Grid, Image, Dropdown, Button, Segment, Divider, Header, Table } from 'semantic-ui-react';
+import { Container, Grid, Image, Button, Segment, Divider, Header, Table } from 'semantic-ui-react';
 import CartItem from './cart-item'
 const ImageURL = 'https://pre00.deviantart.net/d1d9/th/pre/i/2017/051/5/3/pokemon_egg__standard_2k__by_maniraptavia-daghxb1.png';
 
@@ -21,17 +21,21 @@ class CartPage extends Component {
     console.log('componentDidMount in cartpage')
     console.log(this.props)
     this.props.fetchCartFromSession()
-    axios.get("/api/cart")
-      .then(res => this.setState({ cartItems: res.data }))
-
   }
 
   render() {
 
     if (this.props.cart) {
-      const cart = this.props.cart
+      const cart = Object.values(this.props.cart)
       const CartItems = cart.map(item => {
-        return <CartItem qty={item.qty} name={item.pokemon.name} price={item.pokemon.price} id={item.pokemon.id}/>
+        return <CartItem 
+          qty={item.qty} 
+          name={item.pokemon.name} 
+          price={item.pokemon.price} 
+          id={item.pokemon.id} 
+          editPokemonInSession={this.props.editPokemonInSession}
+          deletePokemonInSession={this.props.deletePokemonInSession}
+          />
       })
       const totalPrice = cart.reduce(function(acc, cur) { return acc + cur.pokemon.price * cur.qty }, 0)
       const totalPokemon = cart.reduce(function(acc, cur) { return acc + 1 * cur.qty }, 0)
@@ -66,7 +70,7 @@ class CartPage extends Component {
 
             <Grid.Column width={4}>
               <Segment>
-                <h3>Subtotal (1 item): <span style={{color: '#E31F64'}}>{`$${totalPrice}`}</span></h3>
+                <h3>Subtotal ({totalPokemon} Pokemon): <span style={{color: '#E31F64'}}>{`$${totalPrice}`}</span></h3>
                 <Divider />
                 <div style={{textAlign: 'center'}}>
                 <Button>Proceed to checkout</Button></div>

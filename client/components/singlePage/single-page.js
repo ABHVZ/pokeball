@@ -70,7 +70,7 @@ class SinglePage extends Component {
       		  	  	<Dropdown defaultValue={1} onChange={this.handleDropdown} search selection options={options} />
 
   		  	      	<Button onClick={() => this.props.addPokemonToSession(this.state.dropdownValue, this.props.singlePokemon)}>Buy now</Button>	
-  		  	      	<Button onClick={() => this.editPokemonQuantity()}>Edit Test</Button>
+  		  	      	<Button onClick={() => console.log('this.state.dropdownValue', this.state.dropdownValue)}>Edit Test</Button>
 		      	</div>
 		      </Grid.Column>
 		    </Grid.Row>

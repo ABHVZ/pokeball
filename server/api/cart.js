@@ -6,14 +6,14 @@ router.get('/', (req, res, next) => {
 })
 
 router.post('/', (req, res, next) => {
-    const { singlePokemon, qty } = req.body;
-    const pokemonId = singlePokemon.id;
+    const { pokemon, qty } = req.body;
+    const pokemonId = pokemon.id;
     // If pokemon is not yet in cart
     if (!req.session['cart']) req.session['cart'] = {}
     if (!req.session['cart'][pokemonId]) {
         req.session['cart'][pokemonId] = {
             qty,
-            pokemon: singlePokemon
+            pokemon
         }
     }
     // If pokemon already exists in cart, add new quantity to existing quantity
@@ -31,26 +31,29 @@ router.post('/', (req, res, next) => {
         pokemonId: {
             qty: 1,
             pokemon: { singlePokemon object }
-        },
-        pokemonId: {
-            qty: 1,
-            pokemon: { singlePokemon object }
         }
     }
 */
 
 // Access from cart page only - edit Pokemon quantity
-router.post('/edit', (req, res, next) => {
+router.put('/', (req, res, next) => {
     console.log('Editing session...')
-    console.log('Cart:', req.session.cart)
-    // const { finalQty, singlePokemon } = req.body
-    // const pokemonId = singlePokemon.id
-    // req.session.cart[pokemonId].qty = finalQty
+    console.log('qty:', req.body.qty)
+    console.log('id:', req.body.id)
+    const { qty, id } = req.body
+    // console.log('req.sessions.cart', req.session.cart)
+    req.session.cart[id].qty = qty
+    console.log(req.session.cart)
+    res.send(req.session.cart)
 })
 
 // Access from cart page only - delete Pokemon from cart
-router.post('/delete', (req, res, next) => {
-    const { singlePokemon } = req.body
-    const pokemonId = singlePokemon.id
-    delete req.session.cart[pokemonId]
+router.delete('/:id', (req, res, next) => {
+    const { id } = req.params
+    console.log('req.body', req.body)
+    console.log("Session - Deleting")
+    delete req.session.cart[id]
+    console.log(req.session.cart)
+      console.log('id', id)
+    res.send(req.session.cart)
 })
