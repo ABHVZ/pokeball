@@ -17,6 +17,7 @@ class CartAddedPage extends Component {
 
 	// Recommendation algorithm in process, not fully implemented yet.
 	// Issues: Multiple async requsests; will implement promises to fix at later time
+	// Other approach: Use the allPokemon within store and fetch individual Pokemon data instead of making requests
 	// generateRecommendations(columns) {
 	// 	var collection = [];
 	// 	for (var i = 0; i < columns.length; i++) {
