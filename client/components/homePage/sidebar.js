@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import {pokemonTypes, pokemonGens} from './_util_pokemon_types';
+import { pokemonTypes, pokemonGens } from './_util_pokemon_types';
 import { setMaxPrice, setMinPrice, setMinHP, setMaxHP, setMaxATK, setMinATK } from '../../store'
 
 
@@ -29,6 +29,10 @@ class Sidebar extends Component {
         this.onATKSubmit = this.onATKSubmit.bind(this)
         this.setLocalMinATK = this.setLocalMinATK.bind(this)
         this.setLocalMaxATK = this.setLocalMaxATK.bind(this)
+    }
+
+    componentWillUnmount() {
+        this.props.unmount();
     }
 
     render() {
@@ -66,10 +70,10 @@ class Sidebar extends Component {
                 </form>
 
                 <form className="type-form">
-                    <div className="category-head">ALL TYPES</div>
+                    <div className="category-head">ALL GENERATIONS</div>
                     {
                         pokemonGens.map(pokemonGen => (
-                            <Link to={`/pokemon/type/${pokemonGen}`} className="type-link" key={pokemonGen} >{pokemonGen}</Link>
+                            <Link to={`/pokemon/generation/${pokemonGen}`} className="type-link" key={pokemonGen} >{pokemonGen}</Link>
                         ))
                     }
                 </form>
@@ -148,6 +152,14 @@ const mapDispatchToProps = (dispatch) => ({
     submitMinMaxATK(min, max) {
         dispatch(setMinATK(min));
         dispatch(setMaxATK(max))
+    },
+    unmount() {
+        dispatch(setMinPrice(0));
+        dispatch(setMaxPrice(+Infinity));
+        dispatch(setMinHP(0));
+        dispatch(setMaxHP(+Infinity));
+        dispatch(setMinATK(0));
+        dispatch(setMaxATK(+Infinity));
     }
 })
 

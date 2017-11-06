@@ -52,6 +52,7 @@ const createApp = () => {
   app.use(passport.session())
 
   // auth and api routes
+  console.log("wowow wowow wo wow wo wo _________________________________________")
   app.use('/auth', require('./auth'))
   app.use('/api', require('./api'))
 

@@ -32,6 +32,13 @@ const User = db.define('user', {
   isAdmin: {
     type: Sequelize.BOOLEAN,
     default: false
+  },
+  sex: {
+    type: Sequelize.ENUM('Female', 'Male', 'Non-binary')
+  },
+  profilePic: {
+    type: Sequelize.STRING,
+    defaultValue: '/male_profile.png'
   }
 })
 
@@ -42,6 +49,16 @@ module.exports = User
  */
 User.prototype.correctPassword = function (candidatePwd) {
   return User.encryptPassword(candidatePwd, this.salt) === this.password
+}
+
+User.prototype.getProfile = function () {
+  if (!this.profilePic) {
+    if (this.sex === 'Female') return '/female_profile.png';
+    if (this.sex === 'Male') return '/male_profile.png';
+    if (this.sex === 'Non-binary') return '/pokeball.png';
+  } else {
+    return this.profilePic;
+  }
 }
 
 /**

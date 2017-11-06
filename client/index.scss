@@ -21,10 +21,67 @@ body {
 
 }
 
+.navbar {
+  width: 100vw;
+  height: 80px;
+  display: flex;
+
+  .search-container {
+    padding-left: 3vw;
+    width: 40vw;
+    margin: 15px;
+
+   .ui.icon.input {
+     height: 20px;
+   }
+
+   .ui.search .prompt {
+     border-radius: 0px;
+     border-top: none;
+     border-left: none;
+     border-right: none;
+   }
+  }
+
+  #logo-container {
+    margin-left: 0px;
+    width: 3em;
+  }
+
+  img {
+    max-height: 25px;
+    margin-right: 2em;
+  }
+
+  #head {
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;    
+    font-size: 19px;
+    color: black;
+    font-style: italic;
+  }
+
+
+  .link {
+    margin: 15px;
+    margin-top: 18px;
+    color: black;
+  }
+
+  .link:hover {
+    text-decoration: underline;
+  }
+
+  #link-left-space {
+    margin-left: 25vw;
+  }
+
+  
+}
 
 .home-page-container {
   width: 100vw;
   display: flex;
+  padding-right: 10vw;
 
   .sidebar {
     width: 20vw;
@@ -127,9 +184,18 @@ body {
 
   }
 
+  .page-head {
+    font-size: 15px;
+    margin-bottom: 10px;
+  }
+
+  .page-info {
+    font-size: 11px;
+  }
+
   .pokemon-cards-container {
 
-    width: 80vw;
+    width: 70vw;
     display: flex;
     flex-wrap: wrap;
 
@@ -138,6 +204,7 @@ body {
       font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
       font-size: 14px;
       border: none;
+      width: 12vw;
       img {
         max-height: 180px;
       }
@@ -148,7 +215,6 @@ body {
 }
 
 .pokemon-page-control {
-
 
   display: flex;
   justify-content: center;
@@ -171,4 +237,399 @@ body {
   }
 
   margin-bottom: 30px;
+}
+
+.singlePokemon-container {
+  width: 100vw;
+  display: flex;
+
+  .singlePokemon-image-container {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 3vw;
+    width: 50vw;
+    height: 50vh;
+    padding-left: 20vw;
+
+
+    .pokemon-image {
+      height: 50vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      img {
+        max-height: 300px;
+      }
+
+      .pokemon-review-info {
+        display: flex;
+        justify-content: center;
+
+
+        .star-ratings {
+          unicode-bidi: bidi-override;
+          color: #c5c5c5;
+          font-size: 10px;
+          height: 10px;
+          width: 50px;
+          margin: 1em 0.5em;
+          position: relative;
+          padding: 0;
+        
+          .star-ratings-top {
+            color: rgb(0, 0, 0);
+            padding: 0;
+            position: absolute;
+            z-index: 1;
+            display:block;
+            left: 0px;
+            overflow: hidden;
+          }
+          
+          .star-ratings-bottom {
+            z-index: 0;
+          }
+        }
+
+        .rating-score {
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+        }
+
+
+
+      }
+    }
+
+
+
+
+  }
+
+  .singlePokemon-info-container{
+    display: flex;
+    flex-direction: column;
+    height: 50vh;
+    width: 50vw;
+    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;    
+
+    button {
+      border: none;
+      outline: none;
+      padding: 0px;
+      margin-right: 1em;
+      border-radius: 0px;
+      cursor: pointer;
+    }
+
+    #add-to-bag {
+      height: 35px;
+      width: 25vw;
+      background-color: black;
+      color: white;
+      #add-bag-icon {
+        margin-right: 0.5vw;;
+      }
+    }
+
+    button:hover {
+      background-color: black;
+      color: white;
+    }
+
+    .pokemon-price {
+      font-size: 18px;
+    }
+
+    .title-container {
+      margin-bottom: 20px;
+
+      .pokemon-info-title {
+        display: flex;
+        div {
+          margin-right: 1em;
+          font-size: 15px;
+        }
+      }
+    }
+
+    .pokemon-stats {
+      display: flex;
+      margin-bottom: 20px;
+      div {
+        margin-right: 1em;
+        font-size: 13px;
+      }
+    }
+
+    .select-container {
+      margin-bottom: 10px;
+      font-size: 13px;
+    }
+
+    #shipping-info {
+      font-size: 12px;
+    }
+
+  }
+}
+
+// SASS variable for media query breakpoint
+$breakpoint-desktop: 992px;
+
+// Resetting default styles
+ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+// Fix for jumping arrows
+.carousel-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 210px;
+}
+
+.carousel {
+  position: relative;
+}
+
+// Carousel slides
+.carousel__slide {
+  margin-right: auto;
+  margin-left: auto;
+  display: none;
+  max-width: 900px;
+  list-style-type: none;
+  text-align: center;
+
+  @media (max-width: 991px) {
+    padding-right: 60px;
+    padding-left: 60px;
+  }
+
+  &--active {
+    display: block;
+  }
+}
+
+// Content of slides
+.carousel-slide__content {
+  margin-bottom: 19px;
+  display: flex;
+  justify-content: center;
+  img {
+    max-height: 150px;
+    margin-left: 1vw;
+    margin-right: 1vw;
+  }
+  @media (max-width: $breakpoint-desktop - 1px) {
+    font-size: 13px;
+  }
+}
+
+.carousel-slide__info {
+  font-size: 13px;
+
+  @media (min-width: $breakpoint-desktop) {
+    font-size: 13px;
+  }
+}
+
+// Carousel arrows
+.you-may-like-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .you-may-like-head {
+    display: flex;
+    justify-content: center;
+
+    .ui.header {
+
+      margin-bottom: 20px;
+    }
+  }
+}
+.carousel__arrow {
+  position: absolute;
+  top: 50%;
+  display: block;
+  color: #111;
+  cursor: pointer;
+  opacity: .75;
+  transform: translateY(-50%);
+  transition: opacity .15s cubic-bezier(.4, 0, 1, 1);
+
+  &:focus {
+    outline: 0;
+  }
+
+  &:hover {
+    opacity: .5;
+  }
+
+  &--left {
+    left: 32px;
+  }
+
+  &--right {
+    right: 32px;
+  }
+}
+
+// Carousel indicators
+.carousel__indicators {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 20px;
+
+  li {
+    &:nth-of-type(n + 2) {
+      margin-left: 9px;
+    }
+  }
+}
+
+.carousel__indicator {
+  display: block;
+  width: 24px;
+  height: 3px;
+  background-color: #111;
+  cursor: pointer;
+  opacity: .15;
+  transition: opacity .15s cubic-bezier(.4, 0, 1, 1);
+
+  &:hover {
+    opacity: .5;
+  }
+
+  &--active {
+    &,
+    &:hover {
+      opacity: .75;
+    }
+  }
+}
+
+.ui.threaded.comments {
+  width: 100vw;
+  margin-top: 50px;
+  margin-left: 33vw;
+
+  .ui.dividing.header {
+    border-bottom: 1px solid rgb(92, 91, 91);
+  }
+
+
+  form {
+    height: 100px;
+    
+    .review-input {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      width: 40vw;
+      height: 70px;
+    }
+
+
+    .ui.black.labeled.submit.icon.button {
+      border-radius: 0px;
+    }
+
+    .icon.edit {
+      background-color: black;
+      color: white;
+    }
+  }
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+  .footer-elements {
+    margin-right: 0.5vw;
+    margin-left: 0.5vw;
+    border-top: none;
+    border-bottom: none;
+    border-radius: 0px;
+    background-color: white;
+    cursor: pointer;
+  }
+
+  .footer-elements:hover {
+    background-color: rgb(194, 191, 191);
+  }
+  margin-bottom: 5px;
+}
+
+.shopping-bag-container {
+  width: 100vw;
+  height: 78vh;
+  padding-top: 50px;
+
+  .shopping-bag-info-container {
+    width: 60vw;
+    padding-left: 15vw;
+
+    .title {
+      font-size: 15px;
+      text-align: center;
+      padding-right: 10vw;
+    }
+
+    .sub-head {
+      font-size: 12px;
+      display: flex;
+      margin-top: 30px;
+      .product {
+        margin-right: 20vw;
+      }
+      .other-sub-heads {
+        margin-right: 3vw;
+      }
+    }
+
+    .item-info {
+      margin-top: 10px;
+      display: flex;
+
+      .img-container {
+        margin-right: 2em;
+        img {
+          max-height: 80px;
+        }
+      }
+
+      .info-container {
+        font-size: 12px;
+        width: 17.5vw;
+      }
+
+      .price-container {
+        width: 5.8vw;
+      }
+
+      .quantity-container {
+        width: 7.2vw;
+        select {
+          width: 5vw;
+        }
+      }
+    }
+    
+
+  }
+
+  .checkout-login-container {
+    width: 40vw;
+  }
 }

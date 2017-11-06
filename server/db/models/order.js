@@ -6,7 +6,10 @@ const Order = db.define('order', {
     type: Sequelize.ENUM('PROCESSING', 'SHIPPED', 'DELIVERED'),
   },
   total: {
-    type: Sequelize.INTEGER
+    type: Sequelize.INTEGER,
+  },
+  orderPokemon: {
+    type: Sequelize.ARRAY(Sequelize.ARRAY(Sequelize.INTEGER)),
   }
 })
 module.exports = Order;

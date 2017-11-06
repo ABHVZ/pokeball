@@ -74,7 +74,7 @@ class AllPokemon extends Component {
 
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
     return {
         allPokemon: state.allPokemon,
         minPriceFilter: state.minPriceFilter,
