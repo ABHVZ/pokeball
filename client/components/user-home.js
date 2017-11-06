@@ -286,7 +286,7 @@ export class UserHome extends Component {
 
 
   render() {
-    const { email, firstName, lastName } = this.props.user
+    const { email, firstName, lastName, shippingAddress, billingAddress } = this.props.user
     const { activeItem, disabled } = this.state
 
     return (
@@ -309,25 +309,22 @@ export class UserHome extends Component {
               <Form.Input required readOnly={disabled} label="Email" value={email} />
             </Form>
 
-
             <h4>Shipping Address</h4>
             <Form>
-              <Form.Input required readOnly={disabled} label="Street Address" />
-              <Form.Input readOnly={disabled} placeholder="Apartment, suite, etc." />
-              <Form.Input required readOnly={disabled} label="City" />
-              <Form.Dropdown required disabled={disabled} search selection options={states} label="State" />
-              <Form.Input required readOnly={disabled} label="Zip Code" />
+              <Form.Input required readOnly={disabled} label="Street Address" value={shippingAddress.street1} />
+              <Form.Input readOnly={disabled} placeholder="Apartment, suite, etc." value={shippingAddress.street2} />
+              <Form.Input required readOnly={disabled} label="City" value={shippingAddress.city} />
+              <Form.Dropdown required disabled={disabled} search selection options={states} label="State" value={shippingAddress.state} />
+              <Form.Input required readOnly={disabled} label="Zip Code" value={shippingAddress.zipcode} />
             </Form>
 
-            <h4>
-              Billing Address <Checkbox label="Same as Shipping" />
-            </h4>
+            <h4>Billing Address</h4>
             <Form>
-              <Form.Input required readOnly={disabled} label="Street Address" />
-              <Form.Input readOnly={disabled} placeholder="Apartment, suite, etc." />
-              <Form.Input required readOnly={disabled} label="City" />
-              <Form.Dropdown required disabled={disabled} search selection options={states} label="State" />
-              <Form.Input required readOnly={disabled} label="Zip Code" />
+              <Form.Input required readOnly={disabled} label="Street Address" value={billingAddress.street1} />
+              <Form.Input readOnly={disabled} placeholder="Apartment, suite, etc." value={billingAddress.street2} />
+              <Form.Input required readOnly={disabled} label="City" value={billingAddress.city} />
+              <Form.Dropdown required disabled={disabled} search selection options={states} label="State" value={billingAddress.state} />
+              <Form.Input required readOnly={disabled} label="Zip Code" value={billingAddress.zipcode} />
             </Form>
           </Container>
 
