@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const Pokemon = (props) => {
 
-    const { name, type1, price, hp, atk, imgUrl, id } = props.pokemon;
+    const { name, type1, price, hp, atk, image, id } = props.pokemon;
     return (
         <Card id={id} className="pokemon-card">
             <Link to={`/pokemon/${id}`}>
