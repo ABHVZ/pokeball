@@ -1,32 +1,33 @@
 import React from 'react';
-import { Card, Image } from 'semantic-ui-react'
+import { Image } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 
 
 const Pokemon = (props) => {
-
-    const { name, type1, price, hp, atk, imgUrl, id } = props.pokemon;
+    const { name, type1, price, hp, atk, image, id } = props.pokemon;
     return (
-        <Card id={id} className="pokemon-card">
-            <Link to={`/pokemon/${id}`}>
-                <Image src={image} centered />
-            </Link>
-            <Card.Content>
+        <div id={id} className="pokemon-card">
+            <div>
                 <Link to={`/pokemon/${id}`}>
-                    <Card.Header>
-                        {name}
-                    </Card.Header>
+                    <Image src={image} centered />
                 </Link>
-                <Card.Meta>
+            </div>
+            <div>
+                <Link to={`/pokemon/${id}`}>
+                    <div>
+                        {name}
+                    </div>
+                </Link>
+                <div>
                     <span>
                         {`type: ${type1} hp: ${hp}, atk: ${atk}`}
                     </span>
-                </Card.Meta>
-                <Card.Description>
+                </div>
+                <div>
                     {`$${price}`}
-                </Card.Description>
-            </Card.Content>
-        </Card>
+                </div>
+            </div>
+        </div>
     )
 
 }

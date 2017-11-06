@@ -9,10 +9,15 @@ import { composeWithDevTools } from 'redux-devtools-extension'
  */
 import user from './user'
 import allPokemon from './allPokemon'
+import reviews from './reviews'
 import singlePokemon from './singlePokemon'
 import maxPriceFilter from './maxPriceFilter'
 import minPriceFilter from './minPriceFilter'
-
+import maxHPFilter from './maxHPFilter'
+import minHPFilter from './minHPFilter'
+import maxATKFilter from './maxATKFilter'
+import minATKFilter from './minATKFilter'
+import cart from './cart'
 
 
 const reducer = combineReducers({
@@ -20,7 +25,13 @@ const reducer = combineReducers({
   allPokemon,
   singlePokemon,
   minPriceFilter,
-  maxPriceFilter
+  maxPriceFilter,
+  maxHPFilter,
+  minHPFilter,
+  minATKFilter,
+  maxATKFilter,
+  reviews,
+  cart
 })
 
 
@@ -38,4 +49,10 @@ export * from './allPokemon'
 export * from './singlePokemon'
 export * from './minPriceFilter'
 export * from './maxPriceFilter'
+export * from './maxHPFilter'
+export * from './minHPFilter'
+export * from './maxATKFilter'
+export * from './minATKFilter'
+export * from './reviews'
+export * from './cart'
 

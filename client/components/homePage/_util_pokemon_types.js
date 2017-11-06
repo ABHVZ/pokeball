@@ -17,4 +17,7 @@ const pokemonTypes = ['Bug',
 'Steel',
 'Water']
 
-export default pokemonTypes;
+const pokemonGens = [1, 2, 3, 4, 5, 6]
+
+export {pokemonTypes, pokemonGens};
+

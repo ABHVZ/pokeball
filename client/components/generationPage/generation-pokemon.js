@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import _ from 'lodash';
-import PokemonCard from './pokemon-card';
+import PokemonGenerationInfo from './_util_pokemon_generations_info.js'
+import PokemonCard from '../homePage/pokemon-card';
 
-const pokemonPerPage = 35;
+const pokemonPerPage = 15;
 const getCurrentPagePokemon = (allPokemon, currentPageIndex) => {
     return allPokemon.slice((currentPageIndex - 1) * pokemonPerPage, currentPageIndex * pokemonPerPage)
 }
 const filterPokemonByPrice = (min, max, allpokemon) => {
-    return allpokemon.filter(pokemon => pokemon.price >= min && pokemon.price <= max)
+    return allpokemon.filter(pokemon => pokemon.total >= min && pokemon.total <= max)
+}
+const filterPokemonByGeneration = (generation, allpokemon) => {
+    return allpokemon.filter(pokemon => pokemon.gen == generation)
 }
 const filterPokemonByHP = (min, max, allpokemon) => {
     return allpokemon.filter(pokemon => pokemon.hp >= min && pokemon.hp <= max)
@@ -17,8 +22,7 @@ const filterPokemonByATK = (min, max, allpokemon) => {
     return allpokemon.filter(pokemon => pokemon.atk >= min && pokemon.atk <= max)
 }
 
-
-class AllPokemon extends Component {
+class GenerationPokemon extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -30,8 +34,9 @@ class AllPokemon extends Component {
     }
 
     render() {
-        const { allPokemon } = this.props;
-        let filteredPokemon = filterPokemonByPrice(this.props.minPriceFilter, this.props.maxPriceFilter, allPokemon);
+        const { allPokemon, generation } = this.props;
+        let filteredPokemon = filterPokemonByGeneration(generation, allPokemon);
+        filteredPokemon = filterPokemonByPrice(this.props.minPriceFilter, this.props.maxPriceFilter, filteredPokemon);
         filteredPokemon = filterPokemonByHP(this.props.minHPFilter, this.props.maxHPFilter, filteredPokemon);
         filteredPokemon = filterPokemonByATK(this.props.minATKFilter, this.props.maxATKFilter, filteredPokemon);
 
@@ -45,12 +50,13 @@ class AllPokemon extends Component {
 
         return (
             <div>
+                <div className="page-head">Generation {generation}</div>
+                <div className="page-info">{PokemonGenerationInfo['generation' + generation.toString()]}</div>
                 <div className="pokemon-cards-container">
                     {filteredPokemon && getCurrentPagePokemon(filteredPokemon, this.state.currentPage).map((pokemon) => (
                         <PokemonCard pokemon={pokemon} key={pokemon.name} />
                     ))}
                 </div>
-
                 <div className="pokemon-page-control">
                     <button onClick={this.setPrevPage}>←</button>
                     {pageButtons}
@@ -74,9 +80,10 @@ class AllPokemon extends Component {
 
 }
 
-const mapStateToProps = (state) => {
+function mapStateToProps(state, ownProps) {
     return {
         allPokemon: state.allPokemon,
+        generation: ownProps.match.params.generation,
         minPriceFilter: state.minPriceFilter,
         maxPriceFilter: state.maxPriceFilter,
         minHPFilter: state.minHPFilter,
@@ -86,4 +93,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(AllPokemon);
+export default withRouter(connect(mapStateToProps)(GenerationPokemon));

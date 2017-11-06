@@ -53,8 +53,7 @@ const Pokemon = db.define('pokemon', {
   price: {
     type: Sequelize.VIRTUAL,
     get: function () {
-      const val = this.total * (this.legendary ? 20 : 1);
-      return `$${val.toFixed(2)}`;
+      return this.total * (this.legendary ? 20 : 1);
     }
   },
   total: {
@@ -116,6 +115,9 @@ const Pokemon = db.define('pokemon', {
   title: {
     type: Sequelize.VIRTUAL,
     get: function () { return this.name }
+  },
+  inventoryQuantity: {
+    type: Sequelize.INTEGER
   }
 });
 

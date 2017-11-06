@@ -4,9 +4,8 @@ import { Router } from 'react-router'
 import { Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import { Main, Login, Signup, UserHome, HomePage, Navbar, SinglePage, CartPage } from './components';
-import { me, fetchAllPokemon } from './store'
-
+import { Main, Login, Signup, UserHome, HomePage, SinglePage, CartPage, TypePage, GenerationPage } from './components';
+import { me, fetchAllPokemon, fetchReviews, fetchCartItems } from './store'
 /**
  * COMPONENT
  */
@@ -21,14 +20,15 @@ class Routes extends Component {
     return (
       <Router history={history}>
         <Main>
-          <Navbar />
           <Switch>
             {/* Routes placed here are available to all visitors */}
-            <Route path="/login" component={Login} />
-            <Route path="/signup" component={Signup} />
-            <Route path="/homepage" component={HomePage} />
-            <Route path="/cart" component={CartPage} />
-            <Route path="/pokemon/:id" component={SinglePage} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/signup" component={Signup} />
+            <Route exact path="/homepage" component={HomePage} />
+            <Route exact path="/pokemon/:pokemonId" component={SinglePage} />
+            <Route exact path="/pokemon/type/:type" component={TypePage} />
+            <Route exact path="/pokemon/generation/:generation" component={GenerationPage} />
+            <Route exact path="/cart" component={CartPage} />
             {
               isLoggedIn &&
               <Switch>
@@ -61,6 +61,8 @@ const mapDispatch = (dispatch) => {
     loadInitialData() {
       dispatch(me())
       dispatch(fetchAllPokemon())
+      dispatch(fetchReviews())
+      dispatch(fetchCartItems())
     }
   }
 }

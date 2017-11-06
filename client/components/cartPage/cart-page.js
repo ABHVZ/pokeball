@@ -1,172 +1,88 @@
 import React, { Component } from 'react';
+import _ from 'lodash';
 import { connect } from 'react-redux'
-import * as actions from '../../store'
-
-//only import what we need - below is carry-over from single-page
-import { Container, Grid, Image, Dropdown, Button, Segment, Divider, Header, Table } from 'semantic-ui-react';
-const ImageURL = 'https://pre00.deviantart.net/d1d9/th/pre/i/2017/051/5/3/pokemon_egg__standard_2k__by_maniraptavia-daghxb1.png';
+import { deleteCartItem, putToCartItem } from '../../store'
 
 class CartPage extends Component {
-
   constructor(props) {
-    super(props)
-    this.state = {
-        //empty state
-    }
-  }
-
-  componentDidMount() {
+    super(props);
+    this.setCurrentQuantity = this.setCurrentQuantity.bind(this);
   }
 
   render() {
-    const options = [
-    { key: 1, text: '1', value: 1 },
-    { key: 2, text: '2', value: 2 },
-    { key: 3, text: '3', value: 3 },
-    { key: 4, text: '4', value: 4 },
-    { key: 5, text: '5', value: 5 },
-    { key: 6, text: '6', value: 6 },
-    { key: 7, text: '7', value: 7 },
-    { key: 8, text: '8', value: 8 },
-    { key: 9, text: '9', value: 9 },
-  ]
-  	console.log('cartPage rendered')
+
     return (
-      <Container style={{paddingTop: '1em'}}>
-        <Grid divided='vertically'>
-        <Grid.Row>
-          <Grid.Column width={12}>
+      <div className="shopping-bag-container">
+        <div className="shopping-bag-info-container">
+          <div className="title">Shopping Bag</div>
+          <div className="sub-head">
+            <div className="product">PRODUCT</div>
+            <div className="other-sub-heads">PRICE</div>
+            <div className="other-sub-heads">QUANTITY</div>
+            <div className="other-sub-heads">TOTAL</div>
+          </div>
+          <div>_________________________________________________________________________</div>
+          {this.props.cart && this.props.cart.map(item => (
+            <div className="item-info">
+              <div className="img-container">
+                {item.pokemon && <img src={item.pokemon.image} />}
+              </div>
+              <div className="info-container">
+                {item.pokemon && item.pokemon.name && <div>{item.pokemon.name.toUpperCase()}</div>}
+                {item && <div>{`breed: ${item.breed}`}</div>}
+                {item && <div>{`look: ${item.look}`}</div>}
+                {item && <div>{`level: ${item.level}`}</div>}
+              </div>
+              <div className="price-container">
+                {item && <div>${item.price}</div>}
+              </div>
+              <div className="quantity-container">
+                <div>
+                  <form>
+                    <select onChange={this.setCurrentQuantity}>
+                      {_.range(1, 5).map(quantity => (
+                        quantity !== item.quantity
+                          ? <option value={`${item.id}-${quantity}`}>{quantity}</option>
+                          : <option value={`${item.id}-${quantity}`} selected>{quantity}</option>
+                      ))}
+                    </select>
+                  </form>
+                </div>
+              </div>
+              <div className="total-container">
+                {item && <div>${item.price * item.quantity}</div>}
+              </div>
+            </div>
+          ))}
+          <div>_________________________________________________________________________</div>
+          <button>CHECK OUT</button>
+        </div>
 
-              <Table basic='very'>
-              <Table.Header>
-                <Table.Row>
-                  <Table.HeaderCell>Shopping Cart</Table.HeaderCell>
-                  <Table.HeaderCell>Price</Table.HeaderCell>
-                  <Table.HeaderCell><div style={{float: 'right'}}>Quantity</div></Table.HeaderCell>
-                </Table.Row>
-              </Table.Header>
+        <div className="checkout-login-container" />
 
-              <Table.Body>
-                <Table.Row>
-                  <Table.Cell>
-                    <Header as='h4' image>
-                      <Image src={ImageURL} shape='rounded' size='mini' />
-                      <Header.Content>
-                          Pikachu
-                        <Header.Subheader></Header.Subheader>
-                      </Header.Content>
-                    </Header>
-                  </Table.Cell>
-                  <Table.Cell>
-                      $71.99
-                  </Table.Cell>
-                  <Table.Cell>
-                      <div style={{float: 'right'}}><Dropdown compact defaultValue={1} search selection options={options} /></div>
-                  </Table.Cell>
-                </Table.Row>
-               
-                <Table.Row>
-                  <Table.Cell>
-                    <Header as='h4' image>
-                      <Image src={ImageURL} shape='rounded' size='mini' />
-                      <Header.Content>
-                          Pikachu
-                        <Header.Subheader></Header.Subheader>
-                      </Header.Content>
-                    </Header>
-                  </Table.Cell>
-                  <Table.Cell>
-                      $71.99
-                  </Table.Cell>
-                  <Table.Cell>
-                      <div style={{float: 'right'}}><Dropdown compact defaultValue={1} search selection options={options} /></div>
-                  </Table.Cell>
-                </Table.Row>
-
-                <Table.Row>
-                  <Table.Cell>
-                    <Header as='h4' image>
-                      <Image src={ImageURL} shape='rounded' size='mini' />
-                      <Header.Content>
-                          Pikachu
-                        <Header.Subheader></Header.Subheader>
-                      </Header.Content>
-                    </Header>
-                  </Table.Cell>
-                  <Table.Cell>
-                      $71.99
-                  </Table.Cell>
-                  <Table.Cell>
-                      <div style={{float: 'right'}}><Dropdown compact defaultValue={1} search selection options={options} /></div>
-                  </Table.Cell>
-                </Table.Row>
-
-                <Table.Row>
-                  <Table.Cell>
-                    <Header as='h4' image>
-                      <Image src={ImageURL} shape='rounded' size='mini' />
-                      <Header.Content>
-                          Pikachu
-                        <Header.Subheader></Header.Subheader>
-                      </Header.Content>
-                    </Header>
-                  </Table.Cell>
-                  <Table.Cell>
-                      $71.99
-                  </Table.Cell>
-                  <Table.Cell>
-                      <div style={{float: 'right'}}><Dropdown compact defaultValue={1} search selection options={options} /></div>
-                  </Table.Cell>
-                </Table.Row>
-
-                <Table.Row>
-                  <Table.Cell>
-                    <Header as='h4' image>
-                      <Image src={ImageURL} shape='rounded' size='mini' />
-                      <Header.Content>
-                          Pikachu
-                        <Header.Subheader></Header.Subheader>
-                      </Header.Content>
-                    </Header>
-                  </Table.Cell>
-                  <Table.Cell>
-                      $71.99
-                  </Table.Cell>
-                  <Table.Cell>
-                      <div style={{float: 'right'}}><Dropdown compact defaultValue={1} search selection options={options} /></div>
-                  </Table.Cell>
-                </Table.Row>
-                
-              </Table.Body>
-
-            </Table>
-            <Divider /> 
-            <div style={{float: 'right'}}> <h3>Subtotal (5 Pokemon): <span style={{color: '#E31F64'}}>71.99</span></h3></div>
-
-          </Grid.Column>
-
-
-
-          <Grid.Column width={4}>
-            <Segment>
-              <h3>Subtotal (1 item): <span style={{color: '#E31F64'}}>$71.99</span></h3>
-              <Divider />
-              <div style={{textAlign: 'center'}}>
-              <Button>Proceed to checkout</Button></div>
-              
-            </Segment>
-          </Grid.Column>
-        </Grid.Row>
-
-        
-      </Grid>
-      </Container>
+      </div>
     )
+  }
+
+  setCurrentQuantity(event) {
+    const toUpdateItem = this.props.cart.find(item => item.id === parseInt(event.target.value.slice(0, 1), 10));
+    let locallyUpdatedItem = Object.assign({}, toUpdateItem);
+    locallyUpdatedItem.quantity = parseInt(event.target.value.slice(2), 10);
+    this.props.updateItem(locallyUpdatedItem);
   }
 }
 
-function mapStateToProps(state) {
-	return {
-	}
-}
-export default connect(mapStateToProps, actions)(CartPage);
+const mapStateToProps = (state) => ({
+  cart: state.cart
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  deleteItem(item) {
+    dispatch(deleteCartItem(item));
+  },
+  updateItem(item) {
+    dispatch(putToCartItem(item))
+  }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(CartPage);
