@@ -34,7 +34,7 @@ describe('Pokemon model', () => {
 
     describe('price', function () {
       it('returns the price of the Pokemon based on total stats and legendary status', function () {
-        expect(pikachu.price).to.equal(320.00);
+        expect(pikachu.price).to.equal('320.00');
       })
     });
   })
