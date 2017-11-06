@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import * as actions from '../../store'
-import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 //only import what we need - below is carry-over from single-page
 import { Container, Grid, Image, Button, Segment, Divider, Header, Table } from 'semantic-ui-react';
@@ -20,9 +20,9 @@ class CartPage extends Component {
   componentDidMount() {
     this.props.fetchCartFromSession()
   }
-
+  
   render() {
-
+    
     if (this.props.cart) {
       const cart = Object.values(this.props.cart)
       const CartItems = cart.map(item => {
@@ -35,7 +35,8 @@ class CartPage extends Component {
           deletePokemonInSession={this.props.deletePokemonInSession}
         />
       })
-      console.log('this.props.cart', this.props.cart)
+      console.log('=======this.props.cart==========', this.props.cart)
+      console.log('+++++++this.props.cart(JSON)++++++++++', JSON.stringify(this.props.cart))
       const { totalPrice, totalQuantity } = this.props
 
       return (
@@ -71,7 +72,8 @@ class CartPage extends Component {
                   <h3>Subtotal ({totalQuantity} Pokemon): <span style={{ color: '#E31F64' }}>{`$${totalPrice}`}</span></h3>
                   <Divider />
                   <div style={{ textAlign: 'center' }}>
-                    <Button>Proceed to checkout</Button></div>
+                    <Link to="/checkout"><Button>Proceed to checkout</Button></Link>
+                  </div>
 
                 </Segment>
               </Grid.Column>
