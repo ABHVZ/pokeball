@@ -70,11 +70,11 @@ export class CheckoutPage extends Component {
                     <Form>
                       <Form.Group>
                         <Form.Input label="Card Number" placeholder="Card Number"  />
-                        <Form.Input label="CCV" placeholder="CCV"  />
-                        <Form.Input label="Exp" placeholder="Expiration"  />
+                        <Form.Input label="CCV" placeholder="CCV" />
+                        <Form.Input label="Exp" placeholder="Expiration" />
                       </Form.Group>
-                      <Form.Select options={cardOptions} placeholder="Credit Type"  />
-                      <Form.Checkbox label="I agree to the Terms and Conditions"  />
+                      <Form.Select options={cardOptions} placeholder="Credit Type" />
+                      <Form.Checkbox label="I agree to the Terms and Conditions" />
                     </Form>
                   </Grid.Column>
                 </Grid>
