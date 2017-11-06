@@ -9,7 +9,7 @@ const Pokemon = (props) => {
     return (
         <Card id={id} className="pokemon-card">
             <Link to={`/pokemon/${id}`}>
-                <Image src={imgUrl} centered />
+                <Image src={image} centered />
             </Link>
             <Card.Content>
                 <Link to={`/pokemon/${id}`}>
