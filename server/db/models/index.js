@@ -3,6 +3,7 @@ const Address = require('./address');
 const Order = require('./order');
 const Pokemon = require('./pokemon.js');
 const Cart = require('./cart');
+const Review = require('./review');
 
 Order.belongsTo(Address);
 Order.belongsTo(User);
@@ -15,5 +16,6 @@ module.exports = {
     Address: Address,
     User: User,
     Pokemon: Pokemon,
-    Cart: Cart
+    Cart: Cart,
+    Review: Review
 };
