@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import * as actions from '../../store'
 import axios from 'axios'
+import PokemonReview from './pokemon-review'
 // import addPokemonToSession from '../../store/session'
 import { Container, Grid, Image, Input, Button, Table, Dropdown } from 'semantic-ui-react';
 const ImageURL = 'https://pre00.deviantart.net/d1d9/th/pre/i/2017/051/5/3/pokemon_egg__standard_2k__by_maniraptavia-daghxb1.png';
@@ -113,6 +114,7 @@ class SinglePage extends Component {
 					</Grid.Row>
 				</Grid>
 			</Container>
+			<PokemonReview />
 		)
 	}
 }
