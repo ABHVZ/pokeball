@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import * as actions from '../../store'
 import axios from 'axios'
+import PokemonReview from './pokemon-review'
 // import addPokemonToSession from '../../store/session'
 import { Container, Grid, Image, Input, Button, Table, Dropdown } from 'semantic-ui-react';
 const ImageURL = 'https://pre00.deviantart.net/d1d9/th/pre/i/2017/051/5/3/pokemon_egg__standard_2k__by_maniraptavia-daghxb1.png';
@@ -53,66 +54,69 @@ class SinglePage extends Component {
 		]
 
 		return (
-			<Container style={{ paddingTop: '1em' }}>
-				<Grid divided='vertically'>
-					<Grid.Row columns={2}>
-						<Grid.Column centered>
-							<h1>{name}</h1>
-							<Image style={{ width: '30%', paddingLeft: '1em' }} src={ImageURL} />
-						</Grid.Column>
-						<Grid.Column>
-							<div>
-								<h1>Price: ${price}</h1>
-								<Dropdown defaultValue={1} onChange={this.handleDropdown} search selection options={options} />
+			<div>
+				<Container style={{ paddingTop: '1em' }}>
+					<Grid divided='vertically'>
+						<Grid.Row columns={2}>
+							<Grid.Column centered>
+								<h1>{name}</h1>
+								<Image style={{ width: '30%', paddingLeft: '1em' }} src={ImageURL} />
+							</Grid.Column>
+							<Grid.Column>
+								<div>
+									<h1>Price: ${price}</h1>
+									<Dropdown defaultValue={1} onChange={this.handleDropdown} search selection options={options} />
 
-								<Button onClick={() => {
-									this.props.addPokemonToSession(this.state.dropdownValue, this.props.singlePokemon) // Accepts quantity and pokemon object
-									this.props.history.push('/cart/added') // Redirect user to latest purchase and recommmendations
-								}}>Buy now</Button>
-							</div>
-						</Grid.Column>
-					</Grid.Row>
+									<Button onClick={() => {
+										this.props.addPokemonToSession(this.state.dropdownValue, this.props.singlePokemon) // Accepts quantity and pokemon object
+										this.props.history.push('/cart/added') // Redirect user to latest purchase and recommmendations
+									}}>Buy now</Button>
+								</div>
+							</Grid.Column>
+						</Grid.Row>
 
-					<Grid.Row>
-						<Grid.Column>
+						<Grid.Row>
+							<Grid.Column>
 
-							<Table celled>
-								<Table.Header>
-									<Table.Row>
-										<Table.HeaderCell>Name</Table.HeaderCell>
-										<Table.HeaderCell>Type 1</Table.HeaderCell>
-										<Table.HeaderCell>Type 2</Table.HeaderCell>
-										<Table.HeaderCell>Total</Table.HeaderCell>
-										<Table.HeaderCell>Hitpoints</Table.HeaderCell>
-										<Table.HeaderCell>Attack</Table.HeaderCell>
-										<Table.HeaderCell>Defence</Table.HeaderCell>
-										<Table.HeaderCell>Special Attack</Table.HeaderCell>
-										<Table.HeaderCell>Special Defence</Table.HeaderCell>
-										<Table.HeaderCell>Speed</Table.HeaderCell>
-									</Table.Row>
-								</Table.Header>
+								<Table celled>
+									<Table.Header>
+										<Table.Row>
+											<Table.HeaderCell>Name</Table.HeaderCell>
+											<Table.HeaderCell>Type 1</Table.HeaderCell>
+											<Table.HeaderCell>Type 2</Table.HeaderCell>
+											<Table.HeaderCell>Total</Table.HeaderCell>
+											<Table.HeaderCell>Hitpoints</Table.HeaderCell>
+											<Table.HeaderCell>Attack</Table.HeaderCell>
+											<Table.HeaderCell>Defence</Table.HeaderCell>
+											<Table.HeaderCell>Special Attack</Table.HeaderCell>
+											<Table.HeaderCell>Special Defence</Table.HeaderCell>
+											<Table.HeaderCell>Speed</Table.HeaderCell>
+										</Table.Row>
+									</Table.Header>
 
-								<Table.Body>
-									<Table.Row>
-										<Table.Cell>{name}</Table.Cell>
-										<Table.Cell>{type1}</Table.Cell>
-										<Table.Cell>{type2}</Table.Cell>
-										<Table.Cell>{total}</Table.Cell>
-										<Table.Cell>{hp}</Table.Cell>
-										<Table.Cell>{atk}</Table.Cell>
-										<Table.Cell>{def}</Table.Cell>
-										<Table.Cell>{spAtk}</Table.Cell>
-										<Table.Cell>{spDef}</Table.Cell>
-										<Table.Cell>{speed}</Table.Cell>
-									</Table.Row>
+									<Table.Body>
+										<Table.Row>
+											<Table.Cell>{name}</Table.Cell>
+											<Table.Cell>{type1}</Table.Cell>
+											<Table.Cell>{type2}</Table.Cell>
+											<Table.Cell>{total}</Table.Cell>
+											<Table.Cell>{hp}</Table.Cell>
+											<Table.Cell>{atk}</Table.Cell>
+											<Table.Cell>{def}</Table.Cell>
+											<Table.Cell>{spAtk}</Table.Cell>
+											<Table.Cell>{spDef}</Table.Cell>
+											<Table.Cell>{speed}</Table.Cell>
+										</Table.Row>
 
-								</Table.Body>
-							</Table>
+									</Table.Body>
+								</Table>
 
-						</Grid.Column>
-					</Grid.Row>
-				</Grid>
-			</Container>
+							</Grid.Column>
+						</Grid.Row>
+					</Grid>
+				</Container>
+				<PokemonReview currentPokemon={this.props.singlePokemon} />
+			</div>
 		)
 	}
 }
