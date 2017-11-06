@@ -45,5 +45,4 @@ db.sync({force: true})
 })
 .catch(function (err) {
   console.error('There was totally a problem', err, err.stack);
-}); 
-
+});
