@@ -54,7 +54,7 @@ const Pokemon = db.define('pokemon', {
     type: Sequelize.VIRTUAL,
     get: function () {
       const val = this.total * (this.legendary ? 20 : 1);
-      return `$${val.toFixed(2)}`;
+      return `${val.toFixed(2)}`;
     }
   },
   total: {

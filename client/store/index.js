@@ -12,7 +12,7 @@ import allPokemon from './allPokemon'
 import singlePokemon from './singlePokemon'
 import maxPriceFilter from './maxPriceFilter'
 import minPriceFilter from './minPriceFilter'
-
+import session from './session'
 
 
 const reducer = combineReducers({
@@ -20,7 +20,8 @@ const reducer = combineReducers({
   allPokemon,
   singlePokemon,
   minPriceFilter,
-  maxPriceFilter
+  maxPriceFilter,
+  session
 })
 
 
@@ -38,4 +39,4 @@ export * from './allPokemon'
 export * from './singlePokemon'
 export * from './minPriceFilter'
 export * from './maxPriceFilter'
-
+export * from './session'

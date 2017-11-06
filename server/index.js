@@ -34,6 +34,8 @@ const createApp = () => {
   // logging middleware
   app.use(morgan('dev'))
 
+  //cookie middleware
+
   // body parsing middleware
   app.use(bodyParser.json())
   app.use(bodyParser.urlencoded({ extended: true }))

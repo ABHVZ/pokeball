@@ -20,7 +20,7 @@ const getSinglePokemon = singlePokemon => ({ type: GET_SINGLE_POKEMON, singlePok
  */
 
 export const fetchSinglePokemon = id => {
-    return dispatch => 
+    return dispatch =>
         axios.get(`/api/pokemon/${id}`)
             .then(res => res.data)
             .then(singlePokemon => {

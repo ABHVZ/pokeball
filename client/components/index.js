@@ -10,4 +10,6 @@ export { default as HomePage } from './homePage/home-page'
 export { default as Navbar } from './navbar'
 export { default as SinglePage } from './singlePage/single-page'
 export { default as CartPage } from './cartPage/cart-page'
+export { default as CartAddedPage } from './cartPage/cart-added-page'
+export { default as CheckoutPage } from './checkoutPage/checkout-page'
 

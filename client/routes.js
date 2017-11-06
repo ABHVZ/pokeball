@@ -4,7 +4,7 @@ import { Router } from 'react-router'
 import { Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import { Main, Login, Signup, UserHome, HomePage, Navbar, SinglePage, CartPage } from './components';
+import { Main, Login, Signup, UserHome, HomePage, Navbar, SinglePage, CartPage, CartAddedPage, CheckoutPage } from './components';
 import { me, fetchAllPokemon } from './store'
 
 /**
@@ -27,7 +27,9 @@ class Routes extends Component {
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
             <Route path="/homepage" component={HomePage} />
-            <Route path="/cart" component={CartPage} />
+            <Route path="/cart/added" component={CartAddedPage} />
+            <Route path="/cart/" component={CartPage} />
+            <Route path="/checkout" component={CheckoutPage} />
             <Route path="/pokemon/:id" component={SinglePage} />
             {
               isLoggedIn &&
