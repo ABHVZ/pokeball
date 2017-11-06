@@ -12,7 +12,8 @@ const userData = [
   {
     email: 'veekas@veekasmeansprogress.com',
     firstName: 'Veekas',
-    lastName: 'Shrivastava'
+    lastName: 'Shrivastava',
+    password: 'veekachu!'
   },
   {
     email: 'bryanle52@gmail.com',
