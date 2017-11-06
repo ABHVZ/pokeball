@@ -5,7 +5,7 @@ import { Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
 import { Main, Login, Signup, UserHome, HomePage, Navbar, SinglePage, CartPage, CartAddedPage, CheckoutPage } from './components';
-import { me, fetchAllPokemon, fetchAllReview } from './store'
+import { me, fetchAllPokemon, fetchReviews } from './store'
 
 /**
  * COMPONENT
@@ -63,7 +63,7 @@ const mapDispatch = (dispatch) => {
     loadInitialData() {
       dispatch(me())
       dispatch(fetchAllPokemon())
-      dispatch(fetchAllReview())
+      dispatch(fetchReviews())
     }
   }
 }
