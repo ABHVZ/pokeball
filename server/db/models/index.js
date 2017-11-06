@@ -10,6 +10,10 @@ Order.belongsTo(User);
 Pokemon.hasMany(Order);
 User.hasOne(Address);
 Cart.belongsTo(User);
+User.hasMany(Review);
+Review.belongsTo(User);
+Review.belongsTo(Pokemon);
+Pokemon.hasMany(Review);
 
 module.exports = {
     Order: Order,

@@ -73,6 +73,7 @@ class PokemonReview extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
+    
     return {
         user: state.user,
         reviews: ownProps.currentPokemon && state.reviews &&

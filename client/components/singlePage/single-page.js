@@ -115,7 +115,7 @@ class SinglePage extends Component {
 						</Grid.Row>
 					</Grid>
 				</Container>
-				<PokemonReview />
+				<PokemonReview currentPokemon={this.props.singlePokemon} />
 			</div>
 		)
 	}
