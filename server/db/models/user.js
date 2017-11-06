@@ -2,6 +2,15 @@ const crypto = require('crypto')
 const Sequelize = require('sequelize')
 const db = require('../db')
 
+const defaultAddress = {
+  city: '',
+  state: '',
+  street1: '',
+  street2: '',
+  telephone: '',
+  zipcode: ''
+}
+
 const User = db.define('user', {
   email: {
     type: Sequelize.STRING,
@@ -28,6 +37,14 @@ const User = db.define('user', {
     get() {
       return `${this.firstName} ${this.lastName}`
     }
+  },
+  shippingAddress: {
+    type: Sequelize.JSONB,
+    defaultValue: defaultAddress
+  },
+  billingAddress: {
+    type: Sequelize.JSONB,
+    defaultValue: defaultAddress
   },
   isAdmin: {
     type: Sequelize.BOOLEAN,
