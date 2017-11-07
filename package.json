@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "An e-commerce site to buy any Pokemon that exists",
   "engines": {
-    "node": ">= 7.0.0"
+    "node": "^8.0.0"
   },
   "main": "index.js",
   "scripts": {
