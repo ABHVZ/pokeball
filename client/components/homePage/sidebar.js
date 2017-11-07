@@ -45,7 +45,7 @@ class Sidebar extends Component {
         console.log('this.props', this.props)
 
         return (
-            <Segment compact style={{marginTop: '1em'}}>
+            <Segment compact style={{position: 'fixed'}}>
                 {this.renderCheckBox()}
                 <Form className="min-max-price-form" onSubmit={this.onSubmit}>
                     <div>Price</div>
@@ -72,8 +72,6 @@ class Sidebar extends Component {
         this.setState({ minPriceInput: '$min' })
         this.setState({ maxPriceInput: '$max' })
     }
-
-
 }
 
 const mapStateToProps = (state) => ({
