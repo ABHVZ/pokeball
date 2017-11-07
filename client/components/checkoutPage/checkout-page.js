@@ -56,7 +56,22 @@ export class CheckoutPage extends Component {
                     <h3>Shipping Address:</h3>
                   </Grid.Column>
                   <Grid.Column width={11}>
-                    <h4>Placeholder for Address</h4>
+                    <Form>
+                      <Form.Group>
+                        <Form.Input label='First name' placeholder='First Name' width={5} />
+                        <Form.Input label='Middle Name' placeholder='Middle Name' width={3} />
+                        <Form.Input label='Last Name' placeholder='Last Name' width={5} />
+                      </Form.Group>
+                      <Form.Group>
+                        <Form.Input placeholder='Street Number' width={2} />
+                        <Form.Input placeholder='Street Name' width={11} />
+                      </Form.Group>
+                      <Form.Group>
+                        <Form.Input placeholder='City' width={4} />
+                        <Form.Input placeholder='State' width={4} />
+                        <Form.Input placeholder='Zip' width={3} />
+                      </Form.Group>
+                    </Form>
                   </Grid.Column>
                 </Grid>
               </List.Item>
