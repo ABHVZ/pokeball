@@ -121,9 +121,9 @@ export class CheckoutPage extends Component {
                         <Form.Input label="CCV" placeholder="CCV" width="2" />
                         <Form.Input label="Exp" placeholder="Expiration" width="2" />
                       </Form.Group>
-                      <Form.Checkbox label="I agree to the Terms and Conditions" />
-                    </Form>
                       <Form.Select options={cardOptions} placeholder="Credit Type" width="3" onChange={this.handleCreditDropdown} />
+                    </Form>
+                    <Form.Checkbox label="I agree to the Terms and Conditions" />
                   </Grid.Column>
                 </Grid>
               </List.Item>
@@ -167,7 +167,7 @@ export class CheckoutPage extends Component {
                       <p>
                         {this.state.firstName} {this.state.middleName} {this.state.lastName}<br />
                         {this.state.streetNumber} {this.state.streetName}<br />
-                        {this.state.city}, {this.state.state} {this.state.zip}<br />
+                        {this.state.city} {this.state.state} {this.state.zip}<br />
                       </p>
                     </div>
 
@@ -178,14 +178,14 @@ export class CheckoutPage extends Component {
                       </p>
                     </div>
 
-                    {/* <div>
+                    <div>
                       <h4>Total Charged:</h4>
                       <p>
                         {this.state.firstName} {this.state.middleName} {this.state.lastName}<br />
                         {this.state.streetNumber} {this.state.streetName}<br />
-                        {this.state.city}, {this.state.state} {this.state.zip}<br />
+                        {this.state.city} {this.state.state} {this.state.zip}<br />
                       </p>
-                    </div> */}
+                    </div>
                   </Modal.Content>
                   <Modal.Actions>
                     <Link to="/homepage" ><Button icon='check' content='All Done' onClick={this.close} /></Link>
