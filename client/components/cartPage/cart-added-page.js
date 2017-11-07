@@ -35,9 +35,27 @@ class CartAddedPage extends Component {
 	// 	return collection
 	// }
 
+	generateRecommendations() {
+		var collection = [];
+		for (var i = 0; i < 3; i++) {
+			const randomId = Math.round(Math.random() * 800)
+			const pokemon = this.props.allPokemon[randomId]
+			collection.push(
+				<Grid.Column>
+					<Link to={`/pokemon/${pokemon.id}`}>
+						<Image src={pokemon.image} centered size="small" shape='rounded' />
+					</Link>
+					<Header textAlign='center'>{pokemon.name}</Header>
+				</Grid.Column>
+				)
+		}
+		return collection
+	}
+
 	render() {
 		// Conditionally render once props are received from single page purchase
 		console.log('this.state', this.state)
+		console.log('this.props', this.props)
 		if (this.props.lastPurchased !== undefined) {
 			const { totalPrice, totalQuantity, lastPurchased } = this.props
 			return (
@@ -70,7 +88,7 @@ class CartAddedPage extends Component {
 						- When user is NOT logged in; proceed to sign up page and persist cart into database under user
 			          */}
 
-								<Button>Proceed to checkout ({totalQuantity} items)</Button>
+								<Link to="/checkout"><Button>Proceed to checkout ({totalQuantity} items)</Button></Link>
 							</Grid.Column>
 						</Grid>
 					</Segment>
@@ -78,36 +96,14 @@ class CartAddedPage extends Component {
 					<Header>Recommended for you based on Pikachu</Header>
 
 					<Grid columns={3}>
-						<Grid.Column>
-							<Image src={ImageURL} centered size="small" shape='rounded' />
-							<Header textAlign='center'>Pikachu</Header>
-						</Grid.Column>
-						<Grid.Column>
-							<Image src={ImageURL} centered size="small" shape='rounded' />
-							<Header textAlign='center'>Pikachu</Header>
-						</Grid.Column>
-						<Grid.Column>
-							<Image src={ImageURL} centered size="small" shape='rounded' />
-							<Header textAlign='center'>Pikachu</Header>
-						</Grid.Column>
+						{this.generateRecommendations()}
 					</Grid>
 
 
 					<Header>Customers who shopped for Pikachu also shopped for:</Header>
 
 					<Grid columns={3}>
-						<Grid.Column>
-							<Image src={ImageURL} centered size="small" shape='rounded' />
-							<Header textAlign='center'>Pikachu</Header>
-						</Grid.Column>
-						<Grid.Column>
-							<Image src={ImageURL} centered size="small" shape='rounded' />
-							<Header textAlign='center'>Pikachu</Header>
-						</Grid.Column>
-						<Grid.Column>
-							<Image src={ImageURL} centered size="small" shape='rounded' />
-							<Header textAlign='center'>Pikachu</Header>
-						</Grid.Column>
+						{this.generateRecommendations()}
 					</Grid>
 
 				</Container>
@@ -123,7 +119,8 @@ function mapStateToProps(state) {
 		cart: state.session.cart,
 		totalPrice: state.session.totalPrice,
 		totalQuantity: state.session.totalQuantity,
-		lastPurchased: state.session.lastPurchased
+		lastPurchased: state.session.lastPurchased,
+		allPokemon: state.allPokemon
 	}
 }
 

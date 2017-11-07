@@ -1,28 +1,61 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import * as actions from '../../store'
+import { Link } from 'react-router-dom'
 
-import { Container, Grid, Button, Segment, Divider, List, Dropdown, Form } from 'semantic-ui-react';
+import { Container, Grid, Button, Segment, Divider, List, Dropdown, Form, Modal, Icon } from 'semantic-ui-react';
 
 export class CheckoutPage extends Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      shippingCost: 50
+      shippingCost: 50,
+      open: false,
+      firstName: '',
+      middleName: '',
+      lastName: '',
+      streetNumber: '',
+      streetName: '',
+      city: '',
+      state: '',
+      zip: '',
+      cardNumber: '',
+      cardType: ''
     }
 
-    this.handleDropdown = this.handleDropdown.bind(this)
-
+    this.handleShipppingDropdown = this.handleShipppingDropdown.bind(this)
+    this.handleCreditDropdown = this.handleCreditDropdown.bind(this)
+    this.open = this.open.bind(this)
+    this.close = this.close.bind(this)
+    this.changeHandler = this.changeHandler.bind(this)
   }
 
   componentDidMount() {
     this.props.fetchCartFromSession()
   }
 
-  handleDropdown(e, data) {
+  handleShipppingDropdown(e, data) {
     this.setState({ shippingCost: data.value })
   }
+
+  handleCreditDropdown(e, data) {
+    this.setState({ cardType: data.value })
+  }
+
+  open() {
+    this.setState({ open: true })
+  }
+
+  close() {
+    this.setState({ open: false })
+  }
+
+  changeHandler(e, key) {
+    this.setState({ [key]: e.target.value })
+    console.log(e.target.value);
+  }
+
 
   render() {
     let shippingTotal = this.state.shippingCost.toFixed(2)
@@ -58,18 +91,18 @@ export class CheckoutPage extends Component {
                   <Grid.Column width={11}>
                     <Form>
                       <Form.Group>
-                        <Form.Input label='First name' placeholder='First Name' width={5} />
-                        <Form.Input label='Middle Name' placeholder='Middle Name' width={3} />
-                        <Form.Input label='Last Name' placeholder='Last Name' width={5} />
+                        <Form.Input label='First name' placeholder='First Name' width={5} onChange={(e) => this.changeHandler(e, 'firstName')} />
+                        <Form.Input label='Middle Name' placeholder='Middle Name' width={3} onChange={(e) => this.changeHandler(e, 'middleName')} />
+                        <Form.Input label='Last Name' placeholder='Last Name' width={5} onChange={(e) => this.changeHandler(e, 'lastName')} />
                       </Form.Group>
                       <Form.Group>
-                        <Form.Input placeholder='Street Number' width={2} />
-                        <Form.Input placeholder='Street Name' width={11} />
+                        <Form.Input placeholder='Street Number' width={2} onChange={(e) => this.changeHandler(e, 'streetNumber')} />
+                        <Form.Input placeholder='Street Name' width={11} onChange={(e) => this.changeHandler(e, 'streetName')} />
                       </Form.Group>
                       <Form.Group>
-                        <Form.Input placeholder='City' width={4} />
-                        <Form.Input placeholder='State' width={4} />
-                        <Form.Input placeholder='Zip' width={3} />
+                        <Form.Input placeholder='City' width={4} onChange={(e) => this.changeHandler(e, 'City')} />
+                        <Form.Input placeholder='State' width={4} onChange={(e) => this.changeHandler(e, 'State')} />
+                        <Form.Input placeholder='Zip' width={3} onChange={(e) => this.changeHandler(e, 'zip')} />
                       </Form.Group>
                     </Form>
                   </Grid.Column>
@@ -84,13 +117,13 @@ export class CheckoutPage extends Component {
                   <Grid.Column width={11}>
                     <Form>
                       <Form.Group>
-                        <Form.Input label="Card Number" placeholder="Card Number" width="8" />
+                        <Form.Input label="Card Number" placeholder="Card Number" width="8" onChange={(e) => this.changeHandler(e, 'cardNumber')} />
                         <Form.Input label="CCV" placeholder="CCV" width="2" />
                         <Form.Input label="Exp" placeholder="Expiration" width="2" />
                       </Form.Group>
-                      <Form.Select options={cardOptions} placeholder="Credit Type" width="3" />
-                      <Form.Checkbox label="I agree to the Terms and Conditions" />
+                      <Form.Select options={cardOptions} placeholder="Credit Type" width="3" onChange={this.handleCreditDropdown} />
                     </Form>
+                    <Form.Checkbox label="I agree to the Terms and Conditions" />
                   </Grid.Column>
                 </Grid>
               </List.Item>
@@ -101,7 +134,7 @@ export class CheckoutPage extends Component {
                     <h3>Shipping Method:</h3>
                   </Grid.Column>
                   <Grid.Column width={11}>
-                    <Dropdown defaultValue={50} onChange={this.handleDropdown} search selection options={shippingOptions} />
+                    <Dropdown defaultValue={50} onChange={this.handleShipppingDropdown} search selection options={shippingOptions} />
                   </Grid.Column>
                 </Grid>
               </List.Item>
@@ -119,7 +152,45 @@ export class CheckoutPage extends Component {
               <h4 style={{ color: '#E31F64' }}>Order Total: ${total}</h4>
               <Divider />
               <div style={{ textAlign: 'center' }}>
-                <Button>Place Order</Button>
+                <Modal
+                  dimmer={false}
+                  open={this.state.open}
+                  onOpen={this.open}
+                  onClose={this.close}
+                  size='small'
+                  trigger={<Button primary icon>Place Order<Icon name='right chevron' /></Button>}
+                >
+                  <Modal.Header>Order Processed &amp; Confirmation Sent</Modal.Header>
+                  <Modal.Content>
+                    <div>
+                      <h4>Shipping Address:</h4>
+                      <p>
+                        {this.state.firstName} {this.state.middleName} {this.state.lastName}<br />
+                        {this.state.streetNumber} {this.state.streetName}<br />
+                        {this.state.city} {this.state.state} {this.state.zip}<br />
+                      </p>
+                    </div>
+
+                    <div>
+                      <h4>Payment &amp; Shipping Method:</h4>
+                      <p>
+                        Paid with {this.state.cardType} ending with xxxxxxxx{this.state.cardNumber.slice(-4)} <br />
+                      </p>
+                    </div>
+
+                    <div>
+                      <h4>Total Charged:</h4>
+                      <p>
+                        {this.state.firstName} {this.state.middleName} {this.state.lastName}<br />
+                        {this.state.streetNumber} {this.state.streetName}<br />
+                        {this.state.city} {this.state.state} {this.state.zip}<br />
+                      </p>
+                    </div>
+                  </Modal.Content>
+                  <Modal.Actions>
+                    <Link to="/homepage" ><Button icon='check' content='All Done' onClick={this.close} /></Link>
+                  </Modal.Actions>
+                </Modal>
               </div>
             </Segment>
           </Grid.Column>
