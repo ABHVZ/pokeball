@@ -26,11 +26,6 @@ export class UserHome extends Component {
     this.setState({ user });
     console.log(this.state)
   }
-  updateUserInfo = (evt) => {
-    const user = Object.assign({}, this.state.user);
-    user[evt.target.name] = evt.target.value;
-    this.setState({ user });
-  }
   updateShippingAddress = (evt, data) => {
     const user = Object.assign({}, this.state.user);
     console.log(data)
