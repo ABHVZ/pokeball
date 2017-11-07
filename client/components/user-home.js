@@ -1,272 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Button, Checkbox, Container, Form, Menu } from 'semantic-ui-react';
+import { Button, Container, Form, Menu } from 'semantic-ui-react';
+import { update } from '../store'
 
-
-const states = [
-  {
-    key: 'AL',
-    value: 'AL',
-    text: 'Alabama',
-  },
-  {
-    key: 'AK',
-    value: 'AK',
-    text: 'Alaska',
-  },
-  {
-    key: 'AZ',
-    value: 'AZ',
-    text: 'Arizona',
-  },
-  {
-    key: 'AR',
-    value: 'AR',
-    text: 'Arkansas',
-  },
-  {
-    key: 'CA',
-    value: 'CA',
-    text: 'California',
-  },
-  {
-    key: 'CO',
-    value: 'CO',
-    text: 'Colorado',
-  },
-  {
-    key: 'CT',
-    value: 'CT',
-    text: 'Connecticut',
-  },
-  {
-    key: 'DE',
-    value: 'DE',
-    text: 'Delaware',
-  },
-  {
-    key: 'FL',
-    value: 'FL',
-    text: 'Florida',
-  },
-  {
-    key: 'GA',
-    value: 'GA',
-    text: 'Georgia',
-  },
-  {
-    key: 'HI',
-    value: 'HI',
-    text: 'Hawaii',
-  },
-  {
-    key: 'ID',
-    value: 'ID',
-    text: 'Idaho',
-  },
-  {
-    key: 'IL',
-    value: 'IL',
-    text: 'Illinois',
-  },
-  {
-    key: 'IN',
-    value: 'IN',
-    text: 'Indiana',
-  },
-  {
-    key: 'IA',
-    value: 'IA',
-    text: 'Iowa',
-  },
-  {
-    key: 'KS',
-    value: 'KS',
-    text: 'Kansas',
-  },
-  {
-    key: 'KY',
-    value: 'KY',
-    text: 'Kentucky',
-  },
-  {
-    key: 'LA',
-    value: 'LA',
-    text: 'Louisiana',
-  },
-  {
-    key: 'ME',
-    value: 'ME',
-    text: 'Maine',
-  },
-  {
-    key: 'MD',
-    value: 'MD',
-    text: 'Maryland',
-  },
-  {
-    key: 'MA',
-    value: 'MA',
-    text: 'Massachusetts',
-  },
-  {
-    key: 'MI',
-    value: 'MI',
-    text: 'Michigan',
-  },
-  {
-    key: 'MN',
-    value: 'MN',
-    text: 'Minnesota',
-  },
-  {
-    key: 'MS',
-    value: 'MS',
-    text: 'Mississippi',
-  },
-  {
-    key: 'MO',
-    value: 'MO',
-    text: 'Missouri',
-  },
-  {
-    key: 'MT',
-    value: 'MT',
-    text: 'Montana',
-  },
-  {
-    key: 'NE',
-    value: 'NE',
-    text: 'Nebraska',
-  },
-  {
-    key: 'NV',
-    value: 'NV',
-    text: 'Nevada',
-  },
-  {
-    key: 'NH',
-    value: 'NH',
-    text: 'New Hampshire',
-  },
-  {
-    key: 'NJ',
-    value: 'NJ',
-    text: 'New Jersey',
-  },
-  {
-    key: 'NM',
-    value: 'NM',
-    text: 'New Mexico',
-  },
-  {
-    key: 'NY',
-    value: 'NY',
-    text: 'New York',
-  },
-  {
-    key: 'NC',
-    value: 'NC',
-    text: 'North Carolina',
-  },
-  {
-    key: 'ND',
-    value: 'ND',
-    text: 'North Dakota',
-  },
-  {
-    key: 'OH',
-    value: 'OH',
-    text: 'Ohio',
-  },
-  {
-    key: 'OK',
-    value: 'OK',
-    text: 'Oklahoma',
-  },
-  {
-    key: 'OR',
-    value: 'OR',
-    text: 'Oregon',
-  },
-  {
-    key: 'PA',
-    value: 'PA',
-    text: 'Pennsylvania',
-  },
-  {
-    key: 'PR',
-    value: 'PR',
-    text: 'Puerto Rico',
-  },
-  {
-    key: 'RI',
-    value: 'RI',
-    text: 'Rhode Island',
-  },
-  {
-    key: 'SC',
-    value: 'SC',
-    text: 'South Carolina',
-  },
-  {
-    key: 'SD',
-    value: 'SD',
-    text: 'South Dakota',
-  },
-  {
-    key: 'TN',
-    value: 'TN',
-    text: 'Tennessee',
-  },
-  {
-    key: 'TX',
-    value: 'TX',
-    text: 'Texas',
-  },
-  {
-    key: 'UT',
-    value: 'UT',
-    text: 'Utah',
-  },
-  {
-    key: 'VT',
-    value: 'VT',
-    text: 'Vermont',
-  },
-  {
-    key: 'VI',
-    value: 'VI',
-    text: 'Virgin Islands',
-  },
-  {
-    key: 'VA',
-    value: 'VA',
-    text: 'Virginia',
-  },
-  {
-    key: 'WA',
-    value: 'WA',
-    text: 'Washington',
-  },
-  {
-    key: 'WV',
-    value: 'WV',
-    text: 'West Virginia',
-  },
-  {
-    key: 'WI',
-    value: 'WI',
-    text: 'Wisconsin',
-  },
-  {
-    key: 'WY',
-    value: 'WY',
-    text: 'Wyoming',
-  }
-]
-
+const statesArr = ['AK', 'AL', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'IA', 'ID', 'IL', 'IN', 'KS', 'KY', 'LA', 'MA', 'MD', 'ME', 'MI', 'MN', 'MO', 'MS', 'MT', 'NC', 'ND', 'NE', 'NH', 'NJ', 'NM', 'NV', 'NY', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VA', 'VT', 'WA', 'WI', 'WV', 'WY']
+const states = statesArr.map(state => { return { key: state, value: state, text: state } });
 
 /**
  * COMPONENT
@@ -276,18 +15,50 @@ export class UserHome extends Component {
     super(props);
     this.state = {
       activeItem: 'account',
-      disabled: true
+      user: props.user
     }
   }
 
-  handleMenuClick = (e, { name }) => this.setState({ activeItem: name })
-  handleEditButton = () => this.setState({ disabled: false })
-  handleSubmitButton = () => { this.setState({ disabled: true }) }
-
+  handleMenuClick = (evt, { name }) => this.setState({ activeItem: name })
+  updateUserInfo = (evt) => {
+    const user = Object.assign({}, this.state.user);
+    user[evt.target.name] = evt.target.value;
+    this.setState({ user });
+    console.log(this.state)
+  }
+  updateUserInfo = (evt) => {
+    const user = Object.assign({}, this.state.user);
+    user[evt.target.name] = evt.target.value;
+    this.setState({ user });
+  }
+  updateShippingAddress = (evt, data) => {
+    const user = Object.assign({}, this.state.user);
+    console.log(data)
+    user.shippingAddress[evt.target.name] = evt.target.value;
+    this.setState({ user });
+  }
+  updateShippingState = (evt, { value }) => {
+    const user = Object.assign({}, this.state.user);
+    user.shippingAddress.state = value;
+    this.setState({ user });
+  }
+  updateBillingAddress = (evt) => {
+    const user = Object.assign({}, this.state.user);
+    user.billingAddress[evt.target.name] = evt.target.value;
+    this.setState({ user });
+  }
+  updateBillingState = (evt, { value }) => {
+    const user = Object.assign({}, this.state.user);
+    user.billingAddress.state = value;
+    this.setState({ user });
+  }
+  handleSubmitButton = () => {
+    this.props.submitUserInfo(this.state.user);
+  }
 
   render() {
-    const { email, firstName, lastName, shippingAddress, billingAddress } = this.props.user
-    const { activeItem, disabled } = this.state
+    const { email, firstName, lastName, shippingAddress, billingAddress } = this.state.user
+    const { activeItem } = this.state
 
     return (
       <div className="home-page-container">
@@ -303,33 +74,32 @@ export class UserHome extends Component {
           <h3>Welcome, {email}</h3>
           <h4>General Information</h4>
           <Container>
-            <Form>
-              <Form.Input readOnly={disabled} label="First Name" value={firstName} />
-              <Form.Input readOnly={disabled} label="Last Name" value={lastName} />
-              <Form.Input required readOnly={disabled} label="Email" value={email} />
+            <Form onChange={this.updateUserInfo}>
+              <Form.Input name="firstName" label="First Name" value={firstName} />
+              <Form.Input name="lastName" label="Last Name" value={lastName} />
+              <Form.Input required name="email" label="Email" value={email} />
             </Form>
 
             <h4>Shipping Address</h4>
-            <Form>
-              <Form.Input required readOnly={disabled} label="Street Address" value={shippingAddress.street1} />
-              <Form.Input readOnly={disabled} placeholder="Apartment, suite, etc." value={shippingAddress.street2} />
-              <Form.Input required readOnly={disabled} label="City" value={shippingAddress.city} />
-              <Form.Dropdown required disabled={disabled} search selection options={states} label="State" value={shippingAddress.state} />
-              <Form.Input required readOnly={disabled} label="Zip Code" value={shippingAddress.zipcode} />
+            <Form onChange={this.updateShippingAddress}>
+              <Form.Input required name="street1" label="Street Address" value={shippingAddress.street1} />
+              <Form.Input name="street2" placeholder="Apartment, suite, etc." value={shippingAddress.street2} />
+              <Form.Input required name="city" label="City" value={shippingAddress.city} />
+              <Form.Dropdown required search selection onChange={this.updateShippingState} options={states} name="state" label="State" value={shippingAddress.state} />
+              <Form.Input required name="zipcode" label="Zip Code" value={shippingAddress.zipcode} />
             </Form>
 
             <h4>Billing Address</h4>
-            <Form>
-              <Form.Input required readOnly={disabled} label="Street Address" value={billingAddress.street1} />
-              <Form.Input readOnly={disabled} placeholder="Apartment, suite, etc." value={billingAddress.street2} />
-              <Form.Input required readOnly={disabled} label="City" value={billingAddress.city} />
-              <Form.Dropdown required disabled={disabled} search selection options={states} label="State" value={billingAddress.state} />
-              <Form.Input required readOnly={disabled} label="Zip Code" value={billingAddress.zipcode} />
+            <Form onChange={this.updateBillingAddress}>
+              <Form.Input required name="street1" label="Street Address" value={billingAddress.street1} />
+              <Form.Input name="street2" placeholder="Apartment, suite, etc." value={billingAddress.street2} />
+              <Form.Input required name="city" label="City" value={billingAddress.city} />
+              <Form.Dropdown required search selection onChange={this.updateBillingState} options={states} name="state" label="State" value={billingAddress.state} />
+              <Form.Input required name="zipcode" label="Zip Code" value={billingAddress.zipcode} />
             </Form>
           </Container>
 
           <Container>
-            <Button color="orange" onClick={this.handleEditButton}>Edit</Button>
             <Button color="green" onClick={this.handleSubmitButton}>Submit</Button>
           </Container>
         </Container>
@@ -348,7 +118,13 @@ const mapState = (state) => {
   }
 }
 
-export default connect(mapState)(UserHome)
+const mapDispatch = (dispatch) => ({
+  submitUserInfo(user) {
+    dispatch(update(user))
+  }
+})
+
+export default connect(mapState, mapDispatch)(UserHome)
 
 /**
  * PROP TYPES

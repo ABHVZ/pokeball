@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {User} = require('../db/models')
+const { User } = require('../db/models')
 module.exports = router
 
 router.get('/', (req, res, next) => {
@@ -10,5 +10,15 @@ router.get('/', (req, res, next) => {
     attributes: ['id', 'email', 'shippingAddress', 'billingAddress']
   })
     .then(users => res.json(users))
+    .catch(next)
+})
+
+router.post('/:userId', (req, res, next) => {
+  User.update(req.body, {
+    where: { id: req.params.userId },
+    returning: true
+  })
+    .then(updatedUser => {
+      res.json(updatedUser[1][0])})
     .catch(next)
 })
