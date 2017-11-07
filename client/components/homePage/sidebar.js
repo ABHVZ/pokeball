@@ -42,6 +42,8 @@ class Sidebar extends Component {
 
     render() {
         console.log('this.state', this.state)
+        console.log('this.props', this.props)
+
         return (
             <Segment compact style={{marginTop: '1em'}}>
                 {this.renderCheckBox()}
