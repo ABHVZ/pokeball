@@ -46,7 +46,7 @@ class CartAddedPage extends Component {
 						<Grid>
 							<Grid.Column width={4}>
 								<Header as='h3' image>
-									<Image src={ImageURL} shape='rounded' size='mini' />
+									<Image src={lastPurchased.image} shape='rounded' size='mini' />
 									<Header.Content>
 										{lastPurchased.name}
 										<Header.Subheader

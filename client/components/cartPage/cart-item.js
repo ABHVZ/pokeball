@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Image, Dropdown, Header, Table } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
-const ImageURL = 'https://pre00.deviantart.net/d1d9/th/pre/i/2017/051/5/3/pokemon_egg__standard_2k__by_maniraptavia-daghxb1.png';
+// const ImageURL = 'https://pre00.deviantart.net/d1d9/th/pre/i/2017/051/5/3/pokemon_egg__standard_2k__by_maniraptavia-daghxb1.png';
 const options = [
 	{ key: 1, text: '1', value: 1 },
 	{ key: 2, text: '2', value: 2 },
@@ -30,13 +30,13 @@ class CartItem extends Component {
 	}
 
 	render() {
-		const { qty, name, price, id } = this.props
+		const { qty, name, price, id, image } = this.props
 
 		return (
 			<Table.Row>
 				<Table.Cell>
 					<Header as='h3' image>
-						<Image src={ImageURL} shape='rounded' size='mini' />
+						<Image src={image} shape='rounded' size='mini' />
 						<Header.Content>
 							<Link to={`/pokemon/${id}`}>
 								{name}

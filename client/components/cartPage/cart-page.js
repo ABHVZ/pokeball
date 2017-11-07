@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom'
 //only import what we need - below is carry-over from single-page
 import { Container, Grid, Image, Button, Segment, Divider, Header, Table } from 'semantic-ui-react';
 import CartItem from './cart-item'
-const ImageURL = 'https://pre00.deviantart.net/d1d9/th/pre/i/2017/051/5/3/pokemon_egg__standard_2k__by_maniraptavia-daghxb1.png';
 
 class CartPage extends Component {
 
@@ -31,6 +30,7 @@ class CartPage extends Component {
           name={item.pokemon.name}
           price={item.pokemon.price}
           id={item.pokemon.id}
+          image={item.pokemon.image}
           editPokemonInSession={this.props.editPokemonInSession}
           deletePokemonInSession={this.props.deletePokemonInSession}
         />
