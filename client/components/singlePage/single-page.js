@@ -4,7 +4,7 @@ import * as actions from '../../store'
 import axios from 'axios'
 // import addPokemonToSession from '../../store/session'
 import { Container, Grid, Image, Input, Button, Table, Dropdown } from 'semantic-ui-react';
-const ImageURL = 'https://pre00.deviantart.net/d1d9/th/pre/i/2017/051/5/3/pokemon_egg__standard_2k__by_maniraptavia-daghxb1.png';
+// const ImageURL = 'https://pre00.deviantart.net/d1d9/th/pre/i/2017/051/5/3/pokemon_egg__standard_2k__by_maniraptavia-daghxb1.png';
 
 class SinglePage extends Component {
 
@@ -37,7 +37,7 @@ class SinglePage extends Component {
 		console.log('this.props');
 		console.log(this.props.singlePokemon)
 		console.log('this.state.dropdownValue', this.state.dropdownValue)
-		const { name, atk, def, gen, hp, spAtk, spDef, speed, total, type1, type2, price } = this.props.singlePokemon
+		const { name, atk, def, gen, hp, spAtk, spDef, speed, total, type1, type2, price, image } = this.props.singlePokemon
 
 		// Dropdown menu options
 		const options = [
@@ -58,7 +58,7 @@ class SinglePage extends Component {
 					<Grid.Row columns={2}>
 						<Grid.Column centered>
 							<h1>{name}</h1>
-							<Image style={{ width: '30%', paddingLeft: '1em' }} src={ImageURL} />
+							<Image style={{ width: '30%', paddingLeft: '1em' }} src={image} />
 						</Grid.Column>
 						<Grid.Column>
 							<div>
