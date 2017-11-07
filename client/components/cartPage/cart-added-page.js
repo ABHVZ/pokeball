@@ -70,7 +70,7 @@ class CartAddedPage extends Component {
 						- When user is NOT logged in; proceed to sign up page and persist cart into database under user
 			          */}
 
-								<Button>Proceed to checkout ({totalQuantity} items)</Button>
+								<Link to="/checkout"><Button>Proceed to checkout ({totalQuantity} items)</Button></Link>
 							</Grid.Column>
 						</Grid>
 					</Segment>
