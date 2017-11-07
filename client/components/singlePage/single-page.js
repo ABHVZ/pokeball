@@ -54,7 +54,6 @@ class SinglePage extends Component {
 		]
 
 		return (
-<<<<<<< HEAD
 			<Container style={{ paddingTop: '1em' }}>
 				<Grid divided='vertically'>
 					<Grid.Row columns={2}>
