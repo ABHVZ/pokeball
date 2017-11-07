@@ -12,7 +12,8 @@ const userData = [
   {
     email: 'veekas@veekasmeansprogress.com',
     firstName: 'Veekas',
-    lastName: 'Shrivastava'
+    lastName: 'Shrivastava',
+    password: 'veekachu!'
   },
   {
     email: 'bryanle52@gmail.com',
@@ -45,5 +46,4 @@ db.sync({force: true})
 })
 .catch(function (err) {
   console.error('There was totally a problem', err, err.stack);
-}); 
-
+});
