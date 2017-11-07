@@ -65,7 +65,7 @@ export class UserHome extends Component {
           </Menu>
         </div>
 
-        <Container>
+        <Container className="user-profile">
           <h3>Welcome, {email}</h3>
           <h4>General Information</h4>
           <Container>
