@@ -2,7 +2,7 @@ const router = require('express').Router()
 module.exports = router
 
 router.get('/', (req, res, next) => {
-    res.send(req.session.cart)
+    res.json(req.session.cart)
 })
 
 router.post('/', (req, res, next) => {

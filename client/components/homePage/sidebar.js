@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import pokemonTypes from './_util_pokemon_types';
-import { setMaxPrice, setMinPrice } from '../../store'
-import { Form } from 'semantic-ui-react';
+import { setMaxPrice, setMinPrice, setType } from '../../store'
+import { Checkbox, Grid, Button, Segment, Divider, List, Dropdown, Form, Input } from 'semantic-ui-react';
+
 
 
 class Sidebar extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            maxPriceInput: '$min',
-            minPriceInput: '$max'
+            maxPriceInput: 'max',
+            minPriceInput: 'min',
+            typeCheckedStatus: {
+
+            }
         }
 
         this.onSubmit = this.onSubmit.bind(this)
@@ -18,23 +22,39 @@ class Sidebar extends Component {
         this.setLocalMaxPrice = this.setLocalMaxPrice.bind(this)
     }
 
-    render() {
-        return (
-            <div className="sidebar">
-                {
-                    pokemonTypes.map(pokemonType => (
-                        <Form.Field label={pokemonType} key={pokemonType} control="input" type="checkbox" />
-                    ))
-                }
+    componentDidMount() {
+        this.createInitialTypeStatus()
+    }
 
-                <form className="min-max-price-form" onSubmit={this.onSubmit}>
+    createInitialTypeStatus() {
+        let typeCheckedStatus = {};
+        pokemonTypes.forEach(function(type) {
+            typeCheckedStatus[type] = false
+        })
+        this.setState({ typeCheckedStatus })
+    }
+
+    renderCheckBox() {
+        return pokemonTypes.map(pokemonType => (
+            <Checkbox style={{display: 'block', paddingBottom: '0.5em'}} label={pokemonType} key={pokemonType} control="input" type="checkbox"/>
+        ))
+    }
+
+    render() {
+        console.log('this.state', this.state)
+        console.log('this.props', this.props)
+
+        return (
+            <Segment compact style={{position: 'fixed'}}>
+                {this.renderCheckBox()}
+                <Form className="min-max-price-form" onSubmit={this.onSubmit}>
                     <div>Price</div>
-                    <input className="price-input" onChange={this.setLocalMinPrice} value={this.state.minPriceInput} />
+                    <Input style={{width: '5em'}} size='tiny' className="price-input" onChange={this.setLocalMinPrice} placeholder='min' value={this.state.minPriceInput} />
                     <div>To</div>
-                    <input className="price-input" onChange={this.setLocalMaxPrice} value={this.state.maxPriceInput} />
-                    <button className="price-submit-button" type="submit">Submit</button>
-                </form>
-            </div>
+                    <Input style={{width: '5em'}} size='tiny' className="price-input" onChange={this.setLocalMaxPrice} placeholder='max' value={this.state.maxPriceInput} />
+                    <Button style={{display: 'block'}} type="submit">Submit</Button>
+                </Form>
+            </Segment>
         )
     }
 
@@ -52,8 +72,6 @@ class Sidebar extends Component {
         this.setState({ minPriceInput: '$min' })
         this.setState({ maxPriceInput: '$max' })
     }
-
-
 }
 
 const mapStateToProps = (state) => ({

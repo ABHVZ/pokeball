@@ -31,7 +31,7 @@ class AllPokemon extends Component {
         })
 
         return (
-            <div>
+            <div style={{marginLeft: '21%'}}>
                 <h1>Shop Pokemon</h1>
 
                 <div className="pokemon-cards-container">
