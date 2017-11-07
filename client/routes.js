@@ -24,9 +24,9 @@ class Routes extends Component {
           <Navbar />
           <Switch>
             {/* Routes placed here are available to all visitors */}
+            <Route index path="/home" component={HomePage} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
-            <Route path="/homepage" component={HomePage} />
             <Route path="/cart/added" component={CartAddedPage} />
             <Route path="/cart/" component={CartPage} />
             <Route path="/checkout" component={CheckoutPage} />
@@ -38,8 +38,8 @@ class Routes extends Component {
                 <Route path="/home" component={UserHome} />
               </Switch>
             }
-            {/* Displays our Login component as a fallback */}
-            <Route component={Login} />
+            {/* Displays our Homepage component as a fallback */}
+            <Route component={HomePage} />
           </Switch>
         </Main>
       </Router>
