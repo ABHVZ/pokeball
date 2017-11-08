@@ -22,7 +22,7 @@ class Navbar extends Component {
       <Container>
         <Menu fixed="top" borderless>
 
-          <NavLink to="/" activeClassName="active">
+          <NavLink to="/home" activeClassName="active">
             <Menu.Item
               header
               // active={activeItem === 'home'}
